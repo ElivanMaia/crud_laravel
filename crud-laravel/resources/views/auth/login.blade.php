@@ -6,7 +6,6 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script>
-        // togglePassword = Esta função altera o tipo do campo de senha entre text e password, estudar mais tarde
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const rememberMeCheckbox = document.getElementById('remember_me');
@@ -18,7 +17,7 @@
     <div class="absolute inset-0 bg-custom">
         <x-guest-layout>
             <div class="flex justify-center pt-10">
-                <img src="http://localhost/Trabalho_Semestral/Trabalho_Semestral/CRUD/images/logoReal.png" width="135" height="85" alt="Logo">
+                <img src="{{ asset('images/logoReal.png') }}" width="135" height="85" alt="Logo">
             </div>
 
             <x-auth-session-status class="mb-4" :status="session('status')" />

@@ -3,114 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar com Cores Pretas</title>
+    <title>Bem-Vindo</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #inicio {
+            position: relative;
+            min-height: 100vh;
+            background-image: url("{{ asset('images/inicio.png') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 50px;
+        }
+
+        #servicos{
+            min-height: 100vh;
+            background-image: url("{{ asset('images/imagemInicial1.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        #horarios{
+            min-height: 100vh;
+            background-image: url("{{ asset('images/imagemInicial1.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        } 
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.6) !important;
+            border: none;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <div class="shrink-0 flex items-center">
-                        <x-application-logo class="block h-9 w-auto fill-current text-white" />
-                </div>
+@section('content')
+    @include('layouts.navigation')
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+    <section id="inicio"></section>
+
+
+    <section id="equipe" class="pt-4 pb-5 bg-dark">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h2 class="section-title">Equipe</h2>
+                    <p class="pb-4" style="font-size: 18px;">Conheça a nossa equipe de profissionais qualificados e experientes.</p>
                 </div>
             </div>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <img src="images/equipe1.jpg" class="card-img-top" alt="João Silva">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 20px;">João Silva</h5>
+                            <p class="card-text" style="font-size: 18px;">Especialista em cortes clássicos e modernos. Muita experiência em barbas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <img src="images/equipe2.jpg" class="card-img-top" alt="Carlos Souza">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 20px;">Carlos Souza</h5>
+                            <p class="card-text" style="font-size: 18px;">Barbeiro com experiência em barbas e cortes artísticos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <img src="images/equipe3.jpg" class="card-img-top" alt="Ricardo Pereira">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 20px;">Ricardo Pereira</h5>
+                            <p class="card-text" style="font-size: 18px;">Expert em tratamentos capilares e estética masculina</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                @if (Auth::check())
-                    <x-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                <div>{{ Auth::user()->name }}</div>
-                                <div class="ms-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
+    <section id="servicos" class="py-5 bg-dark">
+        <div class="container pt-5">
+            <h1 class="section-title text-center mb-4 py-4 text-white">Nossos Serviços</h1>
+            <div id="carouselServicos" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/cabeloMasc.jpg" class="card-img-top" alt="Corte de Cabelo">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Corte de Cabelo</h4>
+                                        <p class="card-text">R$30.00</p>
+                                    </div>
                                 </div>
-                            </button>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')" class="text-black">
-                                {{ __('Profile') }}
-                            </x-dropdown-link>
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();" class="text-black">
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-dropdown>
-                @else
-                    <a href="{{ route('login') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition ease-in-out duration-150">
-                        {{ __('Login') }}
-                    </a>
-                @endif
-            </div>
-
-            <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-300 focus:outline-none focus:text-gray-300 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/cabeloBarba.jpg" class="card-img-top" alt="Corte de Cabelo + Barba">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Corte de Cabelo + Barba</h4>
+                                        <p class="card-text">R$40.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/barboterapia.jpg" class="card-img-top" alt="Barboterapia">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Barboterapia</h4>
+                                        <p class="card-text">R$25.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/pigmentBarba.jpg" class="card-img-top" alt="Pigmentação de Barba">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Pigmentação de Barba</h4>
+                                        <p class="card-text">R$35.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/relaxCapilar.jpg" class="card-img-top" alt="Relaxamento Capilar">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Relaxamento Capilar</h4>
+                                        <p class="card-text">R$40.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/progressiva.jpg" class="card-img-top" alt="Progressiva">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Progressiva</h4>
+                                        <p class="card-text">R$50.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/designSobran.jpg" class="card-img-top" alt="Design de Sobrancelhas">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Design de Sobrancelhas</h4>
+                                        <p class="card-text">R$15.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/limpezaMasc.jpg" class="card-img-top" alt="Limpeza de Pele">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Limpeza de Pele</h4>
+                                        <p class="card-text">R$30.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/hidratacao.jpg" class="card-img-top" alt="Hidratação">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Hidratação</h4>
+                                        <p class="card-text">R$30.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselServicos" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselServicos" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <div class="pt-4 pb-1 border-t border-gray-700">
-            <div class="px-4">
-                @if (Auth::check())
-                    <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-400">{{ Auth::user()->email }}</div>
-                @else
-                    <div class="font-medium text-base text-white">{{ __('Guest') }}</div>
-                @endif
+    <section id="horarios" class="py-5 bg-dark">
+        <div class="container pt-5">
+            <h2 class="section-title text-center mb-4 py-4 text-white">Datas e Horários de Agendamento</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card h-100 text-center">
+                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px;">
+                            <h4 class="card-title" style="font-size: 24px;"><i class="bi bi-calendar-day icon"></i> Dias de Agendamento</h4>
+                            <br>
+                            <ul class="list-unstyled styled-list">
+                                <li style="font-size: 20px;">Terça-feira</li>
+                                <li style="font-size: 20px;">Quarta-feira</li>
+                                <li style="font-size: 20px;">Quinta-feira</li>
+                                <li style="font-size: 20px;">Sexta-feira</li>
+                                <li style="font-size: 20px;">Sábado</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 text-center">
+                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px;">
+                            <h4 class="card-title" style="font-size: 24px;"><i class="bi bi-clock icon"></i> Horários de Agendamento</h4>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="list-unstyled styled-list">
+                                        <li style="font-size: 20px;">08:00</li>
+                                        <li style="font-size: 20px;">09:30</li>
+                                        <li style="font-size: 20px;">11:00</li>
+                                        <li style="font-size: 20px;">13:00</li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <ul class="list-unstyled styled-list">
+                                        <li style="font-size: 20px;">14:30</li>
+                                        <li style="font-size: 20px;">16:00</li>
+                                        <li style="font-size: 20px;">17:30</li>
+                                        <li style="font-size: 20px;">19:00</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="mt-3 space-y-1">
-                @if (Auth::check())
-                    <x-responsive-nav-link :href="route('profile.edit')" class="text-white">
-                        {{ __('Profile') }}
-                    </x-responsive-nav-link>
 
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-responsive-nav-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();" class="text-white">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
+
+    <section id="agendamentos" class="vh-100 d-flex justify-content-center align-items-center bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h2 class="text-center text-white">Agendar Corte</h2>
+                    <form method="post" action="verify/agendar.php">
+                        <div class="form-group mb-4">
+                            <label for="telefone" class="text-white">Telefone<span style="color: red">*</span></label>
+                            <input type="tel" class="form-control" id="telefone" name="telefone" onkeypress="$(this).mask('(00) 0000-0000')" placeholder="(00) 0000-0000" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="data" class="text-white">Data e Hora<span style="color: red">*</span></label>
+                            <input type="datetime-local" class="form-control" id="data" name="data" required>
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="service" class="text-white">Serviço<span style="color: red">*</span></label>
+                            <select class="form-control" id="service" name="service" required>
+                                <option value="" disabled selected hidden>Selecione o serviço desejado</option>
+                                <option value="1">Corte de Cabelo Masculino</option>
+                                <option value="2">Corte de Cabelo + Barba</option>
+                                <option value="3">Barboterapia</option>
+                                <option value="4">Pigmentação de Barba</option>
+                                <option value="5">Relaxamento Capilar</option>
+                                <option value="6">Progressiva</option>
+                                <option value="7">Design de Sobrancelhas</option>
+                                <option value="8">Limpeza de Pele Masculina</option>
+                                <option value="9">Hidratação</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="observacao" class="text-white">Especificações</label>
+                            <textarea class="form-control" id="observacao" name="observacao" placeholder="Digite suas observações aqui" rows="5"></textarea>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="referencia" class="text-white">Como ficou sabendo da barbearia?</label>
+                            <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Digite sua resposta aqui">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Agendar</button>
+                        <button type="button" id="meuAgendamentoBtn" class="btn btn-secondary btn-block" data-bs-toggle="modal" data-bs-target="#agendamentoModal">Meu agendamento</button>
                     </form>
-                @else
-                    <x-responsive-nav-link :href="route('login')" class="text-white">
-                        {{ __('Login') }}
-                    </x-responsive-nav-link>
-                @endif
+                </div>
             </div>
-        </div>
-    </div>
-</nav>
 
+            <div class="modal fade" id="agendamentoModal" tabindex="-1" aria-labelledby="agendamentoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="agendamentoModalLabel">Meu Agendamento</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <?php if (!empty($agendamentos)) : ?>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Horário</th>
+                                                <th>Serviço</th>
+                                                <th>Observações</th>
+                                                <th>Referência</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($agendamentos as $agendamento) : ?>
+                                                <tr>
+                                                    <td><?php echo $agendamento['nome_usuario']; ?></td>
+                                                    <td><?php echo $agendamento['horario_agendamento']; ?></td>
+                                                    <td><?php echo $agendamento['nome_corte']; ?></td>
+                                                    <td><?php echo $agendamento['observacoes']; ?></td>
+                                                    <td><?php echo $agendamento['referencia']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php else : ?>
+                                <p class="text-center text-dark">Nenhum agendamento encontrado.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

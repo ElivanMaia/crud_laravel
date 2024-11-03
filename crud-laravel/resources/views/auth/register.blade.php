@@ -10,7 +10,7 @@
     <div class="absolute inset-0 bg-custom">
         <x-guest-layout>
             <div class="flex justify-center pt-10">
-                <img src="http://localhost/Trabalho_Semestral/Trabalho_Semestral/CRUD/images/logoReal.png" width="135" height="85" alt="Logo">
+                <img src="{{ asset('images/logoReal.png') }}" width="135" height="85" alt="Logo">
             </div>
 
             <form method="POST" action="{{ route('register') }}">
