@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             margin: 0;
             padding: 0;
         }
+
         #inicio {
             position: relative;
             min-height: 100vh;
@@ -20,7 +22,7 @@
             margin-top: 50px;
         }
 
-        #servicos{
+        #servicos {
             min-height: 100vh;
             background-image: url("{{ asset('images/imagemInicial1.jpg') }}");
             background-size: cover;
@@ -28,13 +30,13 @@
             background-attachment: fixed;
         }
 
-        #horarios{
+        #horarios {
             min-height: 100vh;
             background-image: url("{{ asset('images/imagemInicial1.jpg') }}");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-        } 
+        }
 
         .card {
             background-color: rgba(255, 255, 255, 0.6) !important;
@@ -42,9 +44,10 @@
         }
     </style>
 </head>
+
 <body>
 
-@section('content')
+    @section('content')
     @include('layouts.navigation')
 
     <section id="inicio"></section>
@@ -257,7 +260,8 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <h2 class="text-center text-white">Agendar Corte</h2>
-                    <form method="post" action="verify/agendar.php">
+                    <form method="post">
+                        @csrf
                         <div class="form-group mb-4">
                             <label for="telefone" class="text-white">Telefone<span style="color: red">*</span></label>
                             <input type="tel" class="form-control" id="telefone" name="telefone" onkeypress="$(this).mask('(00) 0000-0000')" placeholder="(00) 0000-0000" required>
@@ -265,7 +269,6 @@
                         <div class="form-group mb-4">
                             <label for="data" class="text-white">Data e Hora<span style="color: red">*</span></label>
                             <input type="datetime-local" class="form-control" id="data" name="data" required>
-
                         </div>
                         <div class="form-group mb-4">
                             <label for="service" class="text-white">Serviço<span style="color: red">*</span></label>
@@ -295,51 +298,12 @@
                     </form>
                 </div>
             </div>
-
-            <div class="modal fade" id="agendamentoModal" tabindex="-1" aria-labelledby="agendamentoModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="agendamentoModalLabel">Meu Agendamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <?php if (!empty($agendamentos)) : ?>
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Horário</th>
-                                                <th>Serviço</th>
-                                                <th>Observações</th>
-                                                <th>Referência</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($agendamentos as $agendamento) : ?>
-                                                <tr>
-                                                    <td><?php echo $agendamento['nome_usuario']; ?></td>
-                                                    <td><?php echo $agendamento['horario_agendamento']; ?></td>
-                                                    <td><?php echo $agendamento['nome_corte']; ?></td>
-                                                    <td><?php echo $agendamento['observacoes']; ?></td>
-                                                    <td><?php echo $agendamento['referencia']; ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            <?php else : ?>
-                                <p class="text-center text-dark">Nenhum agendamento encontrado.</p>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        </div>
     </section>
+
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>
