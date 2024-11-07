@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             margin: 0;
             padding: 0;
         }
+
         #inicio {
             position: relative;
             min-height: 100vh;
@@ -20,7 +22,7 @@
             margin-top: 50px;
         }
 
-        #servicos{
+        #servicos {
             min-height: 100vh;
             background-image: url("{{ asset('images/imagemInicial1.jpg') }}");
             background-size: cover;
@@ -28,13 +30,13 @@
             background-attachment: fixed;
         }
 
-        #horarios{
+        #horarios {
             min-height: 100vh;
             background-image: url("{{ asset('images/imagemInicial1.jpg') }}");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-        } 
+        }
 
         .card {
             background-color: rgba(255, 255, 255, 0.6) !important;
@@ -42,9 +44,10 @@
         }
     </style>
 </head>
+
 <body>
 
-@section('content')
+    @section('content')
     @include('layouts.navigation')
 
     <section id="inicio"></section>
@@ -257,91 +260,77 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <h2 class="text-center text-white">Agendar Corte</h2>
-                    <form method="post" action="verify/agendar.php">
-                        <div class="form-group mb-4">
-                            <label for="telefone" class="text-white">Telefone<span style="color: red">*</span></label>
-                            <input type="tel" class="form-control" id="telefone" name="telefone" onkeypress="$(this).mask('(00) 0000-0000')" placeholder="(00) 0000-0000" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="data" class="text-white">Data e Hora<span style="color: red">*</span></label>
-                            <input type="datetime-local" class="form-control" id="data" name="data" required>
+                    <form action="{{ route('agendamentos.store') }}" method="POST">
+                        @csrf
 
+                        <div class="form-group mb-3">
+                            <label for="telefone_cliente" class="text-white">Telefone<span style="color: red">*</span></label>
+                            <input type="tel" name="telefone_cliente" value="{{ old('telefone_cliente') }}"
+                                class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark"
+                                onkeypress="$(this).mask('(00) 0000-0000')"
+                                placeholder="(00) 0000-0000" required>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="service" class="text-white">Serviço<span style="color: red">*</span></label>
-                            <select class="form-control" id="service" name="service" required>
+
+                        <div class="form-group mb-3">
+                            <label for="horario_agendamento" class="text-white">Data e Hora<span style="color: red">*</span></label>
+                            <input type="datetime-local" name="horario_agendamento" value="{{ old('horario_agendamento') }}"
+                                class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="id_servico" class="text-white">Serviço<span style="color: red">*</span></label>
+                            <select name="id_servico" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" required>
                                 <option value="" disabled selected hidden>Selecione o serviço desejado</option>
-                                <option value="1">Corte de Cabelo Masculino</option>
-                                <option value="2">Corte de Cabelo + Barba</option>
-                                <option value="3">Barboterapia</option>
-                                <option value="4">Pigmentação de Barba</option>
-                                <option value="5">Relaxamento Capilar</option>
-                                <option value="6">Progressiva</option>
-                                <option value="7">Design de Sobrancelhas</option>
-                                <option value="8">Limpeza de Pele Masculina</option>
-                                <option value="9">Hidratação</option>
+                                @foreach ($servicos as $servico)
+                                <option value="{{ $servico->id }}"
+                                    {{ old('id_servico') == $servico->id ? 'selected' : '' }}>
+                                    {{ $servico->nome_servico }} - R$ {{ number_format($servico->preco, 2, ',', '.') }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="observacao" class="text-white">Especificações</label>
-                            <textarea class="form-control" id="observacao" name="observacao" placeholder="Digite suas observações aqui" rows="5"></textarea>
+
+                        <div class="form-group mb-3">
+                            <label for="observacoes" class="text-white">Especificações</label>
+                            <textarea name="observacoes" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark"
+                                rows="3" placeholder="Digite suas observações aqui">{{ old('observacoes') }}</textarea>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="referencia" class="text-white">Como ficou sabendo da barbearia?</label>
-                            <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Digite sua resposta aqui">
+
+                        <div class="form-group mb-3">
+                            <label for="referencias" class="text-white">Como ficou sabendo da barbearia?</label>
+                            <input type="text" name="referencias" value="{{ old('referencias') }}"
+                                class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark"
+                                placeholder="Digite sua resposta aqui">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Agendar</button>
-                        <button type="button" id="meuAgendamentoBtn" class="btn btn-secondary btn-block" data-bs-toggle="modal" data-bs-target="#agendamentoModal">Meu agendamento</button>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary w-48 p-2 rounded bg-blue-600 text-white">Agendar</button>
+                            <button type="button" id="meuAgendamentoBtn" class="btn btn-secondary w-48 p-2 rounded bg-gray-600 text-white"
+                                data-bs-toggle="modal" data-bs-target="#agendamentoModal">
+                                Meu agendamento
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
-
-            <div class="modal fade" id="agendamentoModal" tabindex="-1" aria-labelledby="agendamentoModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="agendamentoModalLabel">Meu Agendamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <?php if (!empty($agendamentos)) : ?>
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Horário</th>
-                                                <th>Serviço</th>
-                                                <th>Observações</th>
-                                                <th>Referência</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($agendamentos as $agendamento) : ?>
-                                                <tr>
-                                                    <td><?php echo $agendamento['nome_usuario']; ?></td>
-                                                    <td><?php echo $agendamento['horario_agendamento']; ?></td>
-                                                    <td><?php echo $agendamento['nome_corte']; ?></td>
-                                                    <td><?php echo $agendamento['observacoes']; ?></td>
-                                                    <td><?php echo $agendamento['referencia']; ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            <?php else : ?>
-                                <p class="text-center text-dark">Nenhum agendamento encontrado.</p>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        </div>
     </section>
+
+
 
     @include('layouts.footer')
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#telefone').mask('(00) 0000-0000');
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
+
 </html>

@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Agendamento;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin'); // Retorna a view do administrador
+        $total_agendamentos = Agendamento::count();
+
+        return view('admin', compact('total_agendamentos'));
+    }
+
+    public function showAgendamentos()
+    {
+        $agendamentos = Agendamento::with('servico')->get();
+
+        return view('agendamento', compact('agendamentos'));
     }
 }
+
+

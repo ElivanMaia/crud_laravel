@@ -256,53 +256,69 @@
 
 
     <section id="agendamentos" class="vh-100 d-flex justify-content-center align-items-center bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <h2 class="text-center text-white">Agendar Corte</h2>
-                    <form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center text-white">Agendar Corte</h2>
+
+                @auth
+                    <form action="{{ route('agendamentos.store') }}" method="POST">
                         @csrf
-                        <div class="form-group mb-4">
-                            <label for="telefone" class="text-white">Telefone<span style="color: red">*</span></label>
-                            <input type="tel" class="form-control" id="telefone" name="telefone" onkeypress="$(this).mask('(00) 0000-0000')" placeholder="(00) 0000-0000" required>
+                        <div class="mb-4">
+                            <label for="telefone_cliente" class="block text-lg text-white">Telefone</label>
+                            <input type="text" name="telefone_cliente" value="{{ old('telefone_cliente') }}" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="data" class="text-white">Data e Hora<span style="color: red">*</span></label>
-                            <input type="datetime-local" class="form-control" id="data" name="data" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="service" class="text-white">Serviço<span style="color: red">*</span></label>
-                            <select class="form-control" id="service" name="service" required>
-                                <option value="" disabled selected hidden>Selecione o serviço desejado</option>
-                                <option value="1">Corte de Cabelo Masculino</option>
-                                <option value="2">Corte de Cabelo + Barba</option>
-                                <option value="3">Barboterapia</option>
-                                <option value="4">Pigmentação de Barba</option>
-                                <option value="5">Relaxamento Capilar</option>
-                                <option value="6">Progressiva</option>
-                                <option value="7">Design de Sobrancelhas</option>
-                                <option value="8">Limpeza de Pele Masculina</option>
-                                <option value="9">Hidratação</option>
+
+                        <div class="mb-4">
+                            <label for="id_servico" class="block text-lg text-white">Serviço</label>
+                            <select name="id_servico" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
+                                @foreach ($servicos as $servico)
+                                    <option value="{{ $servico->id }}" {{ old('id_servico') == $servico->id ? 'selected' : '' }}>
+                                        {{ $servico->nome_servico }} - R$ {{ number_format($servico->preco, 2, ',', '.') }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="observacao" class="text-white">Especificações</label>
-                            <textarea class="form-control" id="observacao" name="observacao" placeholder="Digite suas observações aqui" rows="5"></textarea>
+
+                        <div class="mb-4">
+                            <label for="horario_agendamento" class="block text-lg text-white">Data e Hora</label>
+                            <input type="datetime-local" name="horario_agendamento" value="{{ old('horario_agendamento') }}" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="referencia" class="text-white">Como ficou sabendo da barbearia?</label>
-                            <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Digite sua resposta aqui">
+
+                        <div class="mb-4">
+                            <label for="observacoes" class="block text-lg text-white">Observações</label>
+                            <textarea name="observacoes" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" rows="4">{{ old('observacoes') }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Agendar</button>
-                        <button type="button" id="meuAgendamentoBtn" class="btn btn-secondary btn-block" data-bs-toggle="modal" data-bs-target="#agendamentoModal">Meu agendamento</button>
+
+                        <div class="mb-4">
+                            <label for="referencias" class="block text-lg text-white">Referências</label>
+                            <textarea name="referencias" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" rows="4">{{ old('referencias') }}</textarea>
+                        </div>
+
+                        <button type="submit" class="bg-blue-600 px-6 py-2 rounded text-white">Criar Agendamento</button>
                     </form>
-                </div>
+                @else
+                    <p class="text-white">Você precisa estar logado para agendar um serviço. <a href="{{ route('login') }}" class="text-blue-500">Clique aqui para fazer login</a></p>
+                @endauth
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+
 
     @include('layouts.footer')
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#telefone').mask('(00) 0000-0000');
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

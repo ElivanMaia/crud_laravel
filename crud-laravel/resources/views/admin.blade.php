@@ -33,6 +33,17 @@
         #menuButton.open {
             transform: translateX(16rem);
         }
+
+        .custom-card {
+            border-radius: 8px;
+            border: 1px solid #444;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 
@@ -45,8 +56,6 @@
             <button class="bg-gray-700 p-2 rounded hover:bg-gray-600">Sair</button>
         </div>
     </header>
-    <!-- vou colocar o botão de sair dentro de um dropdown -->
-
 
     <button id="menuButton" class="text-gray-300 focus:outline-none mt-2">
         <svg id="menuIcon" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -77,19 +86,34 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-700 p-4 rounded shadow-lg">
-                    <h3 class="font-semibold text-lg">Card 1</h3>
-                    <p class="text-2xl font-bold">120</p>
+
+                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
+                    <div class="text-white text-lg font-semibold mb-2">
+                        Agendamentos
+                    </div>
+                    <p class="text-white mb-4">Número de Agendamentos: {{ $total_agendamentos }}</p>
+                    <a href="{{ route('agendamentos.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Agendamentos</a>
                 </div>
-                <div class="bg-gray-700 p-4 rounded shadow-lg">
-                    <h3 class="font-semibold text-lg">Card 2</h3>
-                    <p class="text-2xl font-bold">45</p>
+
+                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
+                    <div class="text-white text-lg font-semibold mb-2">
+                        Clientes
+                    </div>
+                    <p class="text-white mb-4">Total de Clientes: {{ $total_clientes }}</p>
+                    <a href="#" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista de Clientes</a>
                 </div>
-                <div class="bg-gray-700 p-4 rounded shadow-lg">
-                    <h3 class="font-semibold text-lg">Card 3</h3>
-                    <p class="text-2xl font-bold">32</p>
+
+                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
+                    <div class="text-white text-lg font-semibold mb-2">
+                        Card 3
+                    </div>
+                    <p class="text-2xl font-bold text-white mb-4">32</p>
+                    <a href="#" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Mais</a>
                 </div>
+
             </div>
+
+
         </main>
     </div>
 
