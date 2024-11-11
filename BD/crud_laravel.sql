@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/11/2024 às 05:53
+-- Tempo de geração: 11/11/2024 às 05:46
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -44,8 +44,8 @@ CREATE TABLE `agendamentos` (
 --
 
 INSERT INTO `agendamentos` (`id`, `id_user`, `telefone_cliente`, `horario_agendamento`, `observacoes`, `referencias`, `id_servico`, `created_at`, `updated_at`) VALUES
-(1, 1, '(99) 9999-9999', '2024-11-06 04:59:00', 'd', 'd', 1, NULL, '2024-11-07 06:58:24'),
-(4, 4, '(99) 9999-9567', '2024-11-16 01:36:00', NULL, NULL, 15, '2024-11-07 07:36:17', '2024-11-07 07:36:17');
+(1, 1, '(99) 9999-9997', '2024-11-06 04:59:00', 'd', 'd', 1, NULL, '2024-11-09 03:29:14'),
+(6, 6, '(99) 9999-9567', '2006-05-06 05:56:00', 'g', 'l', 11, '2024-11-09 06:05:04', '2024-11-09 06:05:04');
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2024_11_07_032105_add_timestamps_to_agendamentos_table', 2);
+(4, '2024_11_07_032105_add_timestamps_to_agendamentos_table', 2),
+(5, '2024_11_11_013856_add_timestamps_to_servicos_table', 3),
+(6, '2024_11_11_015444_create_servicos_table', 4);
 
 -- --------------------------------------------------------
 
@@ -163,36 +165,22 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `servicos` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nome_servico` varchar(255) NOT NULL,
-  `preco` decimal(10,2) NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nome_servico` varchar(125) NOT NULL,
+  `preco` decimal(8,2) NOT NULL,
+  `descricao` text DEFAULT NULL,
+  `imagem` varchar(125) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `servicos`
 --
 
-INSERT INTO `servicos` (`id`, `nome_servico`, `preco`) VALUES
-(1, 'Corte de Cabelo Masculino', 30.00),
-(2, 'Corte de Cabelo + Barba', 40.00),
-(3, 'Corte de Cabelo + Design de Sobrancelhas', 45.00),
-(4, 'Corte de Cabelo + Reflexo (Luzes ou Mechas)', 60.00),
-(5, 'Corte de Cabelo + Camuflagem de Fios Brancos (Tintura)', 50.00),
-(6, 'Barboterapia', 30.00),
-(7, 'Design de Barba com tesoura e navalha', 35.00),
-(8, 'Pigmentação de Barba', 35.00),
-(9, 'Hidratação Capilar', 30.00),
-(10, 'Relaxamento Capilar', 40.00),
-(11, 'Progressiva Masculina', 70.00),
-(12, 'Design de Sobrancelhas Masculinas', 25.00),
-(13, 'Limpeza de Pele Masculina', 30.00),
-(14, 'Corte de Cabelo Infantil', 25.00),
-(15, 'Depilação a Cera Masculina', 40.00),
-(16, 'Tratamento para Queda de Cabelo', 50.00),
-(17, 'Escova ou Penteado Masculino', 40.00),
-(18, 'Massagem Relaxante para Homens', 40.00),
-(19, 'Corte e Escova para Eventos Especiais', 60.00),
-(20, 'Tratamento Revitalizante para Cabelos Danificados', 50.00);
+INSERT INTO `servicos` (`id`, `nome_servico`, `preco`, `descricao`, `imagem`, `created_at`, `updated_at`) VALUES
+(3, 'Corte de Cabelo Masculino', 30.00, 'Um corte de cabelo clássico ou moderno, feito com precisão para manter o estilo masculino com um visual impecável.', 'servicos/673186124bdfb.jpg', NULL, NULL),
+(4, 'Corte de Cabelo + Barba', 40.00, 'Combinação de corte de cabelo e design de barba, oferecendo um look completo, moderno e bem cuidado.', 'servicos/67318aeed597c.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -214,7 +202,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('l85DbNyY30m1CDik5M4S7RmcH5RdTnZy7U8rR5pk', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUEhOeDBUcU9ERUZKZWRPenNvQXZ1M2hRczlJelcyQ1VaOXV0b2F4SyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1730955081);
+('bb9ptfHllYTAMQva2nwdLYgTwAf13EPN6EFTtfOS', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSmk4SzJudEJZZEtwdHVScjBSVE1MVUszRWlPbnZLT0ltd2pQYzZoOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zZXJ2aWNvcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1731300185);
 
 -- --------------------------------------------------------
 
@@ -242,7 +230,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (1, 'Admin1', 'admin1@gmail.com', NULL, '$2y$12$j3Xkw7EtJEKOEUcVPuj15e50V6caCat8v.ElIQg9zcSD4OHFbZ/Qm', NULL, '2024-11-04 07:18:58', '2024-11-04 07:18:58', 1),
 (2, 'Admin2', 'admin2@gmail.com', NULL, '$2y$12$t60pj1yj9feDNBW5Qu57D.2KrwgVf7.TaxLwWC5hxXlYWwvXfhJui', NULL, '2024-11-04 07:19:36', '2024-11-04 07:19:36', 1),
 (3, 'Admin3', 'admin3@gmail.com', NULL, '$2y$12$5MGA0JeZJ66mByWRafgA8ewt/jno8plG0WtcD.Ng1Rwv7qHFN.DHi', NULL, '2024-11-04 07:20:03', '2024-11-04 07:20:03', 1),
-(4, 'Elivan', 'elivan123@gmail.com', NULL, '$2y$12$5n24azW5hV/3m0.oGyLXC.mXQlE15MD69NsXqW/zBbufG9JcCLzq2', NULL, '2024-11-07 05:17:03', '2024-11-07 05:17:03', 0);
+(4, 'Elivan', 'elivan123@gmail.com', NULL, '$2y$12$5n24azW5hV/3m0.oGyLXC.mXQlE15MD69NsXqW/zBbufG9JcCLzq2', NULL, '2024-11-07 05:17:03', '2024-11-07 05:17:03', 0),
+(6, 'maia', 'maia123@gmail.com', NULL, '$2y$12$QPeVsV4OR7Qna3hVg45T7ea2zGqEpn4DoMWtN7s6I6VKJBA0dAcpu', NULL, '2024-11-09 04:39:42', '2024-11-09 04:39:42', 0);
 
 --
 -- Índices para tabelas despejadas
@@ -329,7 +318,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `agendamentos`
 --
 ALTER TABLE `agendamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
@@ -347,19 +336,19 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `servicos`
 --
 ALTER TABLE `servicos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para tabelas despejadas
@@ -369,7 +358,6 @@ ALTER TABLE `users`
 -- Restrições para tabelas `agendamentos`
 --
 ALTER TABLE `agendamentos`
-  ADD CONSTRAINT `fk_servico` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
