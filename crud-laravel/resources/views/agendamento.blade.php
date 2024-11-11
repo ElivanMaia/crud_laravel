@@ -21,7 +21,7 @@
         <table class="min-w-full bg-gray-800 border border-gray-700 text-white">
             <thead>
                 <tr>
-                    <th class="p-4 text-left">#</th>
+                    <th class="p-4 text-left">Nome</th>
                     <th class="p-4 text-left">Telefone</th>
                     <th class="p-4 text-left">Data e Hora</th>
                     <th class="p-4 text-left">Serviço</th>
@@ -33,7 +33,13 @@
             <tbody>
                 @foreach ($agendamentos as $agendamento)
                 <tr>
-                    <td class="p-4">{{ $agendamento->id }}</td>
+                <td class="p-4">
+    @if ($agendamento->cliente)
+        {{ $agendamento->cliente->name }}
+    @else
+        Cliente não encontrado
+    @endif
+</td>
                     <td class="p-4">{{ $agendamento->telefone_cliente }}</td>
                     <td class="p-4">{{ $agendamento->horario_agendamento->format('d/m/Y H:i') }}</td>
                     <td class="p-4">{{ $agendamento->servico->nome_servico }} - R$ {{ number_format($agendamento->servico->preco, 2, ',', '.') }}</td>

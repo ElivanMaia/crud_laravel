@@ -12,12 +12,12 @@ class AgendamentoController extends Controller
     {
         $total_agendamentos = Agendamento::count();
         $total_clientes = \App\Models\User::count();
-        $agendamentos = Agendamento::with('servico')->get();
+
+        // Carregar os relacionamentos 'cliente' e 'servico' ao buscar os agendamentos
+        $agendamentos = Agendamento::with(['cliente', 'servico'])->get();
 
         return view('agendamento', compact('agendamentos', 'total_agendamentos', 'total_clientes'));
     }
-
-
 
 
     public function create()
@@ -56,7 +56,7 @@ class AgendamentoController extends Controller
 
         $servicos = Servico::all();
 
-        return view('agendamento', compact('agendamento', 'servicos'));
+        return view('edit_agendamento', compact('agendamento', 'servicos'));
     }
 
 

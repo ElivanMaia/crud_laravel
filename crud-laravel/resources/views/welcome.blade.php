@@ -22,6 +22,16 @@
             margin-top: 50px;
         }
 
+        @media (max-width: 915px) {
+            #inicio {
+                background-image: url("{{ asset('images/bannerResp.png') }}");
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin-top: 50px;
+                background-position: center;
+            }
+        }
+
         #servicos {
             min-height: 100vh;
             background-image: url("{{ asset('images/imagemInicial1.jpg') }}");
@@ -94,115 +104,171 @@
     </section>
 
     <section id="servicos" class="py-5 bg-dark">
-        <div class="container pt-5">
-            <h1 class="section-title text-center mb-4 py-4 text-white">Nossos Serviços</h1>
-            <div id="carouselServicos" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/cabeloMasc.jpg" class="card-img-top" alt="Corte de Cabelo">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Corte de Cabelo</h4>
-                                        <p class="card-text">R$30.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/cabeloBarba.jpg" class="card-img-top" alt="Corte de Cabelo + Barba">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Corte de Cabelo + Barba</h4>
-                                        <p class="card-text">R$40.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/barboterapia.jpg" class="card-img-top" alt="Barboterapia">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Barboterapia</h4>
-                                        <p class="card-text">R$25.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/pigmentBarba.jpg" class="card-img-top" alt="Pigmentação de Barba">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Pigmentação de Barba</h4>
-                                        <p class="card-text">R$35.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/relaxCapilar.jpg" class="card-img-top" alt="Relaxamento Capilar">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Relaxamento Capilar</h4>
-                                        <p class="card-text">R$40.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/progressiva.jpg" class="card-img-top" alt="Progressiva">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Progressiva</h4>
-                                        <p class="card-text">R$50.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/designSobran.jpg" class="card-img-top" alt="Design de Sobrancelhas">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Design de Sobrancelhas</h4>
-                                        <p class="card-text">R$15.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/limpezaMasc.jpg" class="card-img-top" alt="Limpeza de Pele">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Limpeza de Pele</h4>
-                                        <p class="card-text">R$30.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="images/hidratacao.jpg" class="card-img-top" alt="Hidratação">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Hidratação</h4>
-                                        <p class="card-text">R$30.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Corte de Cabelo Masculino</h5>
+                        <p class="card-text">R$ 30,00</p>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselServicos" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselServicos" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Corte de Cabelo + Barba</h5>
+                        <p class="card-text">R$ 40,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Corte de Cabelo + Design de Sobrancelhas</h5>
+                        <p class="card-text">R$ 45,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Corte de Cabelo + Reflexo (Luzes ou Mechas)</h5>
+                        <p class="card-text">R$ 60,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Corte de Cabelo + Camuflagem de Fios Brancos</h5>
+                        <p class="card-text">R$ 50,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Barboterapia</h5>
+                        <p class="card-text">R$ 30,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Design de Barba com tesoura e navalha</h5>
+                        <p class="card-text">R$ 35,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Pigmentação de Barba</h5>
+                        <p class="card-text">R$ 35,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Hidratação Capilar</h5>
+                        <p class="card-text">R$ 30,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Relaxamento Capilar</h5>
+                        <p class="card-text">R$ 40,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Progressiva Masculina</h5>
+                        <p class="card-text">R$ 70,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Design de Sobrancelhas Masculinas</h5>
+                        <p class="card-text">R$ 25,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Limpeza de Pele Masculina</h5>
+                        <p class="card-text">R$ 30,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Corte de Cabelo Infantil</h5>
+                        <p class="card-text">R$ 25,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Depilação a Cera Masculina</h5>
+                        <p class="card-text">R$ 40,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Tratamento para Queda de Cabelo</h5>
+                        <p class="card-text">R$ 50,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Escova ou Penteado Masculino</h5>
+                        <p class="card-text">R$ 40,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Massagem Relaxante para Homens</h5>
+                        <p class="card-text">R$ 40,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Corte e Escova para Eventos Especiais</h5>
+                        <p class="card-text">R$ 60,00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Tratamento Revitalizante para Cabelos Danificados</h5>
+                        <p class="card-text">R$ 50,00</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="horarios" class="py-5 bg-dark">
         <div class="container pt-5">
@@ -256,12 +322,12 @@
 
 
     <section id="agendamentos" class="vh-100 d-flex justify-content-center align-items-center bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h2 class="text-center text-white">Agendar Corte</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h2 class="text-center text-white">Agendar Corte</h2>
 
-                @auth
+                    @auth
                     <form action="{{ route('agendamentos.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
@@ -273,9 +339,9 @@
                             <label for="id_servico" class="block text-lg text-white">Serviço</label>
                             <select name="id_servico" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
                                 @foreach ($servicos as $servico)
-                                    <option value="{{ $servico->id }}" {{ old('id_servico') == $servico->id ? 'selected' : '' }}>
-                                        {{ $servico->nome_servico }} - R$ {{ number_format($servico->preco, 2, ',', '.') }}
-                                    </option>
+                                <option value="{{ $servico->id }}" {{ old('id_servico') == $servico->id ? 'selected' : '' }}>
+                                    {{ $servico->nome_servico }} - R$ {{ number_format($servico->preco, 2, ',', '.') }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -297,14 +363,14 @@
 
                         <button type="submit" class="bg-blue-600 px-6 py-2 rounded text-white">Criar Agendamento</button>
                     </form>
-                @else
+                    @else
                     <p class="text-white">Você precisa estar logado para agendar um serviço. <a href="{{ route('login') }}" class="text-blue-500">Clique aqui para fazer login</a></p>
-                @endauth
+                    @endauth
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 

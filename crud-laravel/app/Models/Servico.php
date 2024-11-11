@@ -13,10 +13,13 @@ class Servico extends Model
 
     protected $fillable = ['nome_servico', 'preco'];
 
+    public $timestamps = false;
+
     public function agendamentos()
     {
         return $this->hasMany(Agendamento::class, 'id_servico');
     }
 }
+
 
 
