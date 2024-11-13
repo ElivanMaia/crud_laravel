@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -56,8 +58,66 @@
 
         .card-body {
             min-height: 200px;
-            /* Ajuste conforme necessário */
         }
+
+
+        .fa-star {
+            font-size: 1.5em;
+            color: #d3d3d3;
+            cursor: pointer;
+        }
+
+        .fa-star.checked {
+            color: #ffbc00;
+        }
+
+        .bg-dark {
+        background-color: #f8f9fa !important;
+    }
+
+    .section-title {
+        font-size: 32px;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .bi {
+        color: #0069d9;
+    }
+
+    .list-unstyled li {
+        font-size: 18px;
+        color: #555;
+        padding: 5px 0;
+        transition: color 0.3s ease;
+    }
+
+    .list-unstyled li:hover {
+        color: #0069d9;
+        cursor: pointer;
+    }
+
+    .card-body {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 300px;
+    }
     </style>
 </head>
 
@@ -66,6 +126,35 @@
     @section('content')
     @include('layouts.navigation')
 
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    @endif
+
+    @if(session('error'))
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "{{ session('error') }}",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    @endif
+
+
+
+
+
+
     <section id="inicio"></section>
 
 
@@ -73,130 +162,127 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col">
-                    <h2 class="section-title">Equipe</h2>
-                    <p class="pb-4" style="font-size: 18px;">Conheça a nossa equipe de profissionais qualificados e experientes.</p>
+                    <h2 class="section-title text-white">Nossa Equipe de Funcionários</h2>
+                    <p class="pb-4 text-white" style="font-size: 18px;">Conheça os nossos talentosos funcionários que fazem a diferença no nosso atendimento.</p>
                 </div>
             </div>
-            <div class="row text-center">
+            <div class="row">
+                @foreach ($funcionarios as $funcionario)
                 <div class="col-md-4 mb-4">
                     <div class="card shadow">
-                        <img src="images/equipe1.jpg" class="card-img-top" alt="João Silva">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 20px;">João Silva</h5>
-                            <p class="card-text" style="font-size: 18px;">Especialista em cortes clássicos e modernos. Muita experiência em barbas</p>
+                        <div class="p-4 text-center">
+                            @if($funcionario->foto)
+                            <img src="{{ Storage::url($funcionario->foto) }}" alt="Foto do funcionário" class="card-img-top w-full h-48 object-cover rounded mb-3">
+                            @else
+                            <img src="https://via.placeholder.com/600x400?text=Foto+Indisponível" class="card-img-top w-full h-48 object-cover rounded mb-3" alt="Foto Indisponível">
+                            @endif
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title" style="font-size: 20px;">{{ $funcionario->nome }}</h5>
+                            <p class="card-text" style="font-size: 18px;">{{ $funcionario->frase_pessoal ?? 'Sem frase pessoal' }}</p>
+                            <p class="text-muted" style="font-size: 16px;">{{ $funcionario->caminho_barbearia }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow">
-                        <img src="images/equipe2.jpg" class="card-img-top" alt="Carlos Souza">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 20px;">Carlos Souza</h5>
-                            <p class="card-text" style="font-size: 18px;">Barbeiro com experiência em barbas e cortes artísticos</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow">
-                        <img src="images/equipe3.jpg" class="card-img-top" alt="Ricardo Pereira">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 20px;">Ricardo Pereira</h5>
-                            <p class="card-text" style="font-size: 18px;">Expert em tratamentos capilares e estética masculina</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
+
     <section id="servicos" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="section-title text-white text-center mb-5">Nossos Serviços</h2>
-        <div class="row">
-            @foreach ($servicos as $servico)
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm border-light rounded-lg">
-                    <div class="p-4 text-center">
-                        @if($servico->imagem)
+        <div class="container">
+            <h2 class="section-title text-white text-center mb-5">Nossos Serviços</h2>
+            <div class="row">
+                @foreach ($servicos as $servico)
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-light rounded-lg">
+                        <div class="p-4 text-center">
+                            @if($servico->imagem)
                             <img src="{{ Storage::url($servico->imagem) }}" alt="Imagem do serviço" class="w-full h-48 object-cover rounded mb-3">
-                        @else
+                            @else
                             <img src="https://via.placeholder.com/600x400?text=Imagem+Indisponível" class="w-full h-48 object-cover rounded mb-3" alt="Imagem Indisponível">
-                        @endif
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title font-weight-bold">{{ $servico->nome_servico }}</h5>
-                        <p class="card-text">{{ $servico->descricao }}</p>
-                        <p class="price h4 text-primary">R$ {{ number_format($servico->preco, 2, ',', '.') }}</p>
+                            @endif
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">{{ $servico->nome_servico }}</h5>
+                            <p class="card-text">{{ $servico->descricao }}</p>
+                            <p class="price h4 text-primary">R$ {{ number_format($servico->preco, 2, ',', '.') }}</p>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
-</section>
+    </section>
 
 
 
 
     <section id="horarios" class="py-5 bg-dark">
-        <div class="container pt-5">
-            <h2 class="section-title text-center mb-4 py-4 text-white">Datas e Horários de Agendamento</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card h-100 text-center">
-                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px;">
-                            <h4 class="card-title" style="font-size: 24px;"><i class="bi bi-calendar-day icon"></i> Dias de Agendamento</h4>
-                            <br>
-                            <ul class="list-unstyled styled-list">
-                                <li style="font-size: 20px;">Terça-feira</li>
-                                <li style="font-size: 20px;">Quarta-feira</li>
-                                <li style="font-size: 20px;">Quinta-feira</li>
-                                <li style="font-size: 20px;">Sexta-feira</li>
-                                <li style="font-size: 20px;">Sábado</li>
-                            </ul>
-                        </div>
+    <div class="container pt-5">
+        <h2 class="section-title text-center mb-5 text-white" style="font-size: 32px; font-weight: bold;">Datas e Horários de Agendamento</h2>
+        <div class="row">
+            <!-- Cartão de Dias de Agendamento -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 border-light rounded-lg">
+                    <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
+                        <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
+                            <i class="bi bi-calendar-day" style="font-size: 28px; color: #0069d9;"></i> Dias de Agendamento
+                        </h4>
+                        <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                            <li>Terça-feira</li>
+                            <li>Quarta-feira</li>
+                            <li>Quinta-feira</li>
+                            <li>Sexta-feira</li>
+                            <li>Sábado</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card h-100 text-center">
-                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px;">
-                            <h4 class="card-title" style="font-size: 24px;"><i class="bi bi-clock icon"></i> Horários de Agendamento</h4>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <ul class="list-unstyled styled-list">
-                                        <li style="font-size: 20px;">08:00</li>
-                                        <li style="font-size: 20px;">09:30</li>
-                                        <li style="font-size: 20px;">11:00</li>
-                                        <li style="font-size: 20px;">13:00</li>
-                                    </ul>
-                                </div>
-                                <div class="col">
-                                    <ul class="list-unstyled styled-list">
-                                        <li style="font-size: 20px;">14:30</li>
-                                        <li style="font-size: 20px;">16:00</li>
-                                        <li style="font-size: 20px;">17:30</li>
-                                        <li style="font-size: 20px;">19:00</li>
-                                    </ul>
-                                </div>
+            </div>
+
+            <!-- Cartão de Horários de Agendamento -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 border-light rounded-lg">
+                    <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
+                        <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
+                            <i class="bi bi-clock" style="font-size: 28px; color: #0069d9;"></i> Horários de Agendamento
+                        </h4>
+                        <div class="row justify-content-center">
+                            <div class="col-md-5">
+                                <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                                    <li>08:00</li>
+                                    <li>09:30</li>
+                                    <li>11:00</li>
+                                    <li>13:00</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-5">
+                                <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                                    <li>14:30</li>
+                                    <li>16:00</li>
+                                    <li>17:30</li>
+                                    <li>19:00</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 
-    <section id="agendamentos" class="vh-100 d-flex justify-content-center align-items-center bg-dark">
+    <section id="agendamentos" class="d-flex justify-content-center align-items-center bg-dark" style="min-height: 100vh; position: relative;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <h2 class="text-center text-white">Agendar Corte</h2>
+
                     <form action="{{ route('agendamentos.store') }}" method="POST">
                         @csrf
-
                         <div class="form-group mb-3">
                             <label for="telefone_cliente" class="text-white">Telefone<span style="color: red">*</span></label>
                             <input type="tel" name="telefone_cliente" value="{{ old('telefone_cliente') }}"
@@ -212,7 +298,6 @@
                                 name="horario_agendamento"
                                 class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark"
                                 required>
-                            <!-- Exibir erro, caso haja -->
                             @error('horario_agendamento')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -223,9 +308,22 @@
                             <select name="id_servico" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" required>
                                 <option value="" disabled selected hidden>Selecione o serviço desejado</option>
                                 @foreach ($servicos as $servico)
-                                <option value="{{ $servico->id }}"
-                                    {{ old('id_servico') == $servico->id ? 'selected' : '' }}>
+                                <option value="{{ $servico->id }}" {{
+                                old('id_servico') == $servico->id ? 'selected' : '' }}>
                                     {{ $servico->nome_servico }} - R$ {{ number_format($servico->preco, 2, ',', '.') }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="id_funcionario" class="text-white">Escolha o Funcionário<span style="color: red">*</span></label>
+                            <select name="id_funcionario" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" required>
+                                <option value="" disabled selected hidden>Selecione o Funcionário</option>
+                                @foreach ($funcionarios as $funcionario)
+                                <option value="{{ $funcionario->id }}" {{
+                                old('id_funcionario') == $funcionario->id ? 'selected' : '' }}>
+                                    {{ $funcionario->nome }}
                                 </option>
                                 @endforeach
                             </select>
@@ -246,9 +344,8 @@
 
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary w-48 p-2 rounded bg-blue-600 text-white">Agendar</button>
-                            <button type="button" id="meuAgendamentoBtn" class="btn btn-secondary w-48 p-2 rounded bg-gray-600 text-white"
-                                data-bs-toggle="modal" data-bs-target="#agendamentoModal">
-                                Meu agendamento
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#agendamentoModal">
+                                Ver Agendamento
                             </button>
                         </div>
                     </form>
@@ -256,6 +353,78 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="agendamentoModal" tabindex="-1" aria-labelledby="agendamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agendamentoModalLabel">Detalhes do Agendamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                @if(isset($agendamento))
+    <p><strong>Detalhes do Agendamento:</strong> {{ $agendamento->id ?? 'Não encontrado' }}</p>
+    <p><strong>Cliente:</strong> {{ $agendamento->cliente->nome ?? 'Não informado' }}</p>
+    <p><strong>Telefone:</strong> {{ $agendamento->cliente->telefone ?? 'Não informado' }}</p>
+    <p><strong>Data e Hora:</strong> {{ $agendamento->horario_agendamento->format('d/m/Y H:i') ?? 'Não informado' }}</p>
+    <p><strong>Serviço:</strong> {{ $agendamento->servico->nome_servico ?? 'Não informado' }} - R$ {{ number_format($agendamento->servico->preco ?? 0, 2, ',', '.') }}</p>
+    <p><strong>Funcionário:</strong> {{ $agendamento->funcionario->nome ?? 'Não informado' }}</p>
+    <p><strong>Observações:</strong> {{ $agendamento->observacoes ?? 'Não informado' }}</p>
+    <p><strong>Referências:</strong> {{ $agendamento->referencias ?? 'Não informado' }}</p>
+@else
+    <p>Agendamento não encontrado.</p>
+@endif
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section id="feedbacks" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-title text-center mb-5 text-white">Deixe seu Feedback</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form action="{{ route('feedbacks.store') }}" method="POST">
+                        @csrf
+
+                        <div class="form-group mb-3">
+                            <label for="avaliacao" class="text-white">Avaliação <span class="text-red-500">*</span></label>
+                            <div class="stars">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <span class="fa fa-star" data-index="{{ $i }}"></span>
+                                    @endfor
+                            </div>
+                            <input type="hidden" name="avaliacao" id="avaliacao" value="0" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="mensagem" class="text-white">Mensagem <span class="text-red-500">*</span></label>
+                            <textarea name="mensagem" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" rows="5" placeholder="Deixe sua mensagem" required></textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="sugestoes" class="text-white">Sugestões</label>
+                            <textarea name="sugestoes" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" rows="3" placeholder="Deixe suas sugestões"></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary w-48 p-2 rounded bg-blue-600 text-white">Enviar Feedback</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
 
 
@@ -269,69 +438,121 @@
         });
     </script>
 
+
     <script>
-        // Definição dos horários permitidos para cada dia da semana (2=terça, 3=quarta, etc)
+        const stars = document.querySelectorAll('.fa-star');
+        const ratingInput = document.getElementById('avaliacao');
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const index = parseInt(star.getAttribute('data-index'));
+                highlightStars(index);
+            });
+
+            star.addEventListener('mouseout', function() {
+                const currentRating = parseInt(ratingInput.value);
+                highlightStars(currentRating);
+            });
+
+            star.addEventListener('click', function() {
+                const index = parseInt(star.getAttribute('data-index'));
+                ratingInput.value = index;
+                highlightStars(index);
+            });
+        });
+
+        function highlightStars(rating) {
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('checked');
+                } else {
+                    star.classList.remove('checked');
+                }
+            });
+        }
+    </script>
+
+    <script>
+        var agendamentoModal = document.getElementById('agendamentoModal');
+        agendamentoModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var cliente = button.getAttribute('data-cliente');
+            var telefone = button.getAttribute('data-telefone');
+            var data = button.getAttribute('data-data');
+            var servico = button.getAttribute('data-servico');
+            var funcionario = button.getAttribute('data-funcionario');
+            var observacoes = button.getAttribute('data-observacoes');
+            var referencias = button.getAttribute('data-referencias');
+
+            var modalTitle = agendamentoModal.querySelector('.modal-title');
+            var modalBody = agendamentoModal.querySelector('.modal-body');
+
+            modalTitle.textContent = 'Detalhes do Agendamento - ' + cliente;
+            modalBody.innerHTML = `
+            <p><strong>Cliente:</strong> ${cliente}</p>
+            <p><strong>Telefone:</strong> ${telefone}</p>
+            <p><strong>Data e Hora:</strong> ${data}</p>
+            <p><strong>Serviço:</strong> ${servico}</p>
+            <p><strong>Funcionário:</strong> ${funcionario}</p>
+            <p><strong>Observações:</strong> ${observacoes}</p>
+            <p><strong>Referências:</strong> ${referencias}</p>
+        `;
+        });
+    </script>
+
+
+
+    <script>
         const horariosPermitidos = {
-            "2": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"], // Terça-feira
-            "3": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"], // Quarta-feira
-            "4": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"], // Quinta-feira
-            "5": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"], // Sexta-feira
-            "6": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"] // Sábado
+            "2": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+            "3": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+            "4": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+            "5": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+            "6": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"]
         };
 
-        // Função para formatar data e hora no formato 'YYYY-MM-DDTHH:MM'
         function formatDate(date) {
             return date.toISOString().slice(0, 16);
         }
 
-        // Função para ajustar a hora do input se estiver inválida
         document.getElementById('horario_agendamento').addEventListener('input', function(e) {
             const input = e.target;
             const selectedDate = new Date(input.value);
 
-            // Obtém o dia da semana (0 = Domingo, 1 = Segunda-feira, 2 = Terça-feira, etc.)
             const dayOfWeek = selectedDate.getDay();
 
-            // Se o dia não for entre terça-feira e sábado, exibe alerta e limpa o campo
             if (dayOfWeek === 0 || dayOfWeek === 1) {
                 alert('Somente dias de terça a sábado são permitidos!');
                 input.setCustomValidity('Escolha um dia entre terça-feira e sábado.');
-                input.value = ''; // Limpa o campo
+                input.value = '';
                 return;
             }
 
-            // Obtém o horário do input selecionado
             const selectedHour = selectedDate.getHours();
             const selectedMinute = selectedDate.getMinutes();
             const selectedTime = `${String(selectedHour).padStart(2, '0')}:${String(selectedMinute).padStart(2, '0')}`;
 
-            // Verifica se o horário selecionado é válido para aquele dia
             const validHours = horariosPermitidos[dayOfWeek];
 
-            // Se o horário selecionado não estiver na lista de horários válidos
             if (!validHours.includes(selectedTime)) {
-                // Ajusta para o primeiro horário disponível da lista
-                const firstValidTime = validHours[0]; // Sempre escolhe o primeiro horário da lista
+                const firstValidTime = validHours[0];
 
-                // Ajuste da data para o primeiro horário válido
                 const [hour, minute] = firstValidTime.split(":");
                 selectedDate.setHours(hour, minute);
 
-                // Atualiza o campo de entrada com a data e hora ajustada
                 input.value = formatDate(selectedDate);
 
-                // Exibe um alerta para o usuário
                 alert(`Horário inválido! Ajustado automaticamente para o primeiro horário disponível: ${firstValidTime}`);
             }
         });
 
-        // Configura a data mínima para o agendamento (não permite datas passadas)
         document.getElementById('horario_agendamento').setAttribute('min', formatDate(new Date()));
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 
 </body>
 

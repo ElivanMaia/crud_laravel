@@ -11,13 +11,23 @@ class AgendamentoController extends Controller
     public function index()
     {
         $total_agendamentos = Agendamento::count();
-        $total_clientes = \App\Models\User::count();
 
-        // Carregar os relacionamentos 'cliente' e 'servico' ao buscar os agendamentos
         $agendamentos = Agendamento::with(['cliente', 'servico'])->get();
 
-        return view('agendamento', compact('agendamentos', 'total_agendamentos', 'total_clientes'));
+        return view('agendamento', compact('agendamentos', 'total_agendamentos'));
     }
+
+    public function show($id)
+{
+    $agendamento = Agendamento::with(['cliente', 'servico', 'funcionario'])->find($id);
+
+    if (!$agendamento) {
+        return redirect()->route('agendamentos.index')->with('error', 'Agendamento não encontrado.');
+    }
+
+    return view('dashboard', compact('agendamento'));
+}
+
 
 
     public function create()
@@ -34,7 +44,16 @@ class AgendamentoController extends Controller
             'observacoes' => 'nullable|string',
             'referencias' => 'nullable|string',
             'id_servico' => 'required|exists:servicos,id',
+            'id_funcionario' => 'required|exists:funcionarios,id',
         ]);
+
+        $existe_agendamento = Agendamento::where('id_funcionario', $validated['id_funcionario'])
+            ->where('horario_agendamento', $validated['horario_agendamento'])
+            ->exists();
+
+        if ($existe_agendamento) {
+            return back()->with('error', 'Este funcionário já tem um agendamento no horário escolhido. Por favor, escolha outro horário.');
+        }
 
         Agendamento::create([
             'telefone_cliente' => $validated['telefone_cliente'],
@@ -43,9 +62,10 @@ class AgendamentoController extends Controller
             'referencias' => $validated['referencias'],
             'id_servico' => $validated['id_servico'],
             'id_user' => auth()->id(),
+            'id_funcionario' => $validated['id_funcionario'],
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Agendamento criado com sucesso!');
+        return back()->with('success', 'Agendamento realizado com sucesso!');
     }
 
 
@@ -58,8 +78,6 @@ class AgendamentoController extends Controller
 
         return view('edit_agendamento', compact('agendamento', 'servicos'));
     }
-
-
 
     public function update(Request $request, $id)
     {

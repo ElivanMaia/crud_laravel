@@ -17,7 +17,8 @@ class Agendamento extends Model
         'horario_agendamento',
         'observacoes',
         'referencias',
-        'id_servico'
+        'id_servico',
+        'id_funcionario'
     ];
 
     protected $dates = ['horario_agendamento'];
@@ -26,15 +27,19 @@ class Agendamento extends Model
         'horario_agendamento' => 'datetime',
     ];
 
-    // Relacionamento com o cliente (User)
     public function cliente()
-    {
-        return $this->belongsTo(User::class, 'id_user');
-    }
+{
+    return $this->belongsTo(User::class, 'id_user');
+}
 
-    // Relacionamento com o serviço
-    public function servico()
-    {
-        return $this->belongsTo(Servico::class, 'id_servico');
-    }
+public function servico()
+{
+    return $this->belongsTo(Servico::class, 'id_servico');
+}
+
+public function funcionario()
+{
+    return $this->belongsTo(Funcionario::class, 'id_funcionario');
+}
+
 }

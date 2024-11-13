@@ -64,211 +64,62 @@
 
 
     <section id="equipe" class="pt-4 pb-5 bg-dark">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col">
-                    <h2 class="section-title">Equipe</h2>
-                    <p class="pb-4" style="font-size: 18px;">Conheça a nossa equipe de profissionais qualificados e experientes.</p>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow">
-                        <img src="images/equipe1.jpg" class="card-img-top" alt="João Silva">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 20px;">João Silva</h5>
-                            <p class="card-text" style="font-size: 18px;">Especialista em cortes clássicos e modernos. Muita experiência em barbas</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow">
-                        <img src="images/equipe2.jpg" class="card-img-top" alt="Carlos Souza">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 20px;">Carlos Souza</h5>
-                            <p class="card-text" style="font-size: 18px;">Barbeiro com experiência em barbas e cortes artísticos</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow">
-                        <img src="images/equipe3.jpg" class="card-img-top" alt="Ricardo Pereira">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 20px;">Ricardo Pereira</h5>
-                            <p class="card-text" style="font-size: 18px;">Expert em tratamentos capilares e estética masculina</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col">
+                <h2 class="section-title text-white">Nossa Equipe de Funcionários</h2>
+                <p class="pb-4 text-white" style="font-size: 18px;">Conheça os nossos talentosos funcionários que fazem a diferença no nosso atendimento.</p>
             </div>
         </div>
-    </section>
-
-    <section id="servicos" class="py-5 bg-dark">
-    <div class="container">
         <div class="row">
+            @foreach ($funcionarios as $funcionario)
             <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Corte de Cabelo Masculino</h5>
-                        <p class="card-text">R$ 30,00</p>
+                <div class="card shadow">
+                    <div class="p-4 text-center">
+                        @if($funcionario->foto)
+                            <img src="{{ Storage::url($funcionario->foto) }}" alt="Foto do funcionário" class="card-img-top w-full h-48 object-cover rounded mb-3">
+                        @else
+                            <img src="https://via.placeholder.com/600x400?text=Foto+Indisponível" class="card-img-top w-full h-48 object-cover rounded mb-3" alt="Foto Indisponível">
+                        @endif
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title" style="font-size: 20px;">{{ $funcionario->nome }}</h5>
+                        <p class="card-text" style="font-size: 18px;">{{ $funcionario->frase_pessoal ?? 'Sem frase pessoal' }}</p>
+                        <p class="text-muted" style="font-size: 16px;">{{ $funcionario->caminho_barbearia }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Corte de Cabelo + Barba</h5>
-                        <p class="card-text">R$ 40,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Corte de Cabelo + Design de Sobrancelhas</h5>
-                        <p class="card-text">R$ 45,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Corte de Cabelo + Reflexo (Luzes ou Mechas)</h5>
-                        <p class="card-text">R$ 60,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Corte de Cabelo + Camuflagem de Fios Brancos</h5>
-                        <p class="card-text">R$ 50,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Barboterapia</h5>
-                        <p class="card-text">R$ 30,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Design de Barba com tesoura e navalha</h5>
-                        <p class="card-text">R$ 35,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Pigmentação de Barba</h5>
-                        <p class="card-text">R$ 35,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Hidratação Capilar</h5>
-                        <p class="card-text">R$ 30,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Relaxamento Capilar</h5>
-                        <p class="card-text">R$ 40,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Progressiva Masculina</h5>
-                        <p class="card-text">R$ 70,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Design de Sobrancelhas Masculinas</h5>
-                        <p class="card-text">R$ 25,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Limpeza de Pele Masculina</h5>
-                        <p class="card-text">R$ 30,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Corte de Cabelo Infantil</h5>
-                        <p class="card-text">R$ 25,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Depilação a Cera Masculina</h5>
-                        <p class="card-text">R$ 40,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Tratamento para Queda de Cabelo</h5>
-                        <p class="card-text">R$ 50,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Escova ou Penteado Masculino</h5>
-                        <p class="card-text">R$ 40,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Massagem Relaxante para Homens</h5>
-                        <p class="card-text">R$ 40,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Corte e Escova para Eventos Especiais</h5>
-                        <p class="card-text">R$ 60,00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Tratamento Revitalizante para Cabelos Danificados</h5>
-                        <p class="card-text">R$ 50,00</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
+
+
+    <section id="servicos" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-white text-center mb-5">Nossos Serviços</h2>
+            <div class="row">
+                @foreach ($servicos as $servico)
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-light rounded-lg">
+                        <div class="p-4 text-center">
+                            @if($servico->imagem)
+                            <img src="{{ Storage::url($servico->imagem) }}" alt="Imagem do serviço" class="w-full h-48 object-cover rounded mb-3">
+                            @else
+                            <img src="https://via.placeholder.com/600x400?text=Imagem+Indisponível" class="w-full h-48 object-cover rounded mb-3" alt="Imagem Indisponível">
+                            @endif
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">{{ $servico->nome_servico }}</h5>
+                            <p class="card-text">{{ $servico->descricao }}</p>
+                            <p class="price h4 text-primary">R$ {{ number_format($servico->preco, 2, ',', '.') }}</p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
 
     <section id="horarios" class="py-5 bg-dark">
         <div class="container pt-5">

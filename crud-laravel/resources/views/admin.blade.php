@@ -87,6 +87,14 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+            <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
+                    <div class="text-white text-lg font-semibold mb-2">
+                        Clientes
+                    </div>
+                    <p class="text-white mb-4">Total de Clientes: {{ $total_clientes }}</p>
+                    <a href="{{ route('usuarios.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista de Clientes</a>
+                </div>
+
                 <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
                     <div class="text-white text-lg font-semibold mb-2">
                         Agendamentos
@@ -97,10 +105,26 @@
 
                 <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
                     <div class="text-white text-lg font-semibold mb-2">
+                        Funcionários
+                    </div>
+                    <p class="text-white mb-4">Total de Funcionários: {{ $total_funcionarios }}</p>
+                    <a href="{{ route('funcionarios.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista de Funcionários</a>
+                </div>
+
+                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
+                    <div class="text-white text-lg font-semibold mb-2">
                         Serviços
                     </div>
-                    <p class="text-white mb-4">Total de Serviços: {{ $total_servicos }}</p>
-                    <a href="{{ route('servicos.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista de Serviços</a>
+                    <p class=" text-white mb-4">Total de Serviços: {{ $total_servicos }} </p>
+                    <a href="{{ route('servicos.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista Serviços</a>
+                </div>
+
+                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
+                    <div class="text-white text-lg font-semibold mb-2">
+                        Feedbacks
+                    </div>
+                    <p class="text-white mb-4">Total de Feedbacks: {{ $total_feedbacks }}</p>
+                    <a href="{{ route('feedbacks.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista Feedbacks</a>
                 </div>
 
                 <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
@@ -111,29 +135,6 @@
                     <a href="#" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Mais</a>
                 </div>
 
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Card 3
-                    </div>
-                    <p class="text-2xl font-bold text-white mb-4">32</p>
-                    <a href="#" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Mais</a>
-                </div>
-
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Card 3
-                    </div>
-                    <p class="text-2xl font-bold text-white mb-4">32</p>
-                    <a href="#" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Mais</a>
-                </div>
-
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Card 3
-                    </div>
-                    <p class="text-2xl font-bold text-white mb-4">32</p>
-                    <a href="#" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Mais</a>
-                </div>
 
             </div>
 
