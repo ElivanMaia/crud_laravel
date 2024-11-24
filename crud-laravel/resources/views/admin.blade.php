@@ -1,182 +1,263 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Painel Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJfJ6lqz5HTqFw5g77RE9aH8F4OglsSoSxsRtFf0a95e1GjfpZ2tPEHcmob7" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
     <style>
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-
-        #menuButton {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 50;
-            transition: transform 0.3s ease;
-        }
-
-        #menuButton.open {
-            transform: translateX(16rem);
-        }
-
-        .custom-card {
-            border-radius: 8px;
-            border: 1px solid #444;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .custom-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        .logo-img {
+            width: 65px;
+            height: auto;
         }
     </style>
 </head>
 
-<body class="bg-gray-900 text-white">
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <ul class="navbar-nav">
+                        <li>
+                            <a href="#">
+                                <div class="h-5 w-5">
+                                    <img src="assets/imgs/logoReal.png" alt="" class="img-fluid logo-img">
+                                </div>
+                                <span class="title">Barba & Navalha</span>
+                            </a>
+                        </li>
 
-    <header class="bg-gray-800 p-4 shadow-lg flex justify-between items-center">
-        <h1 class="text-xl font-bold mx-auto">Admin Dashboard</h1>
-        <div class="flex items-center space-x-4">
-            <span class="text-gray-400 hidden sm:block">Admin</span>
-            <button class="bg-gray-700 p-2 rounded hover:bg-gray-600">Sair</button>
+                        <li>
+                            <a href="{{ route('admin') }}">
+                                <span class="icon">
+                                    <ion-icon name="home-outline"></ion-icon>
+                                </span>
+                                <span class="title">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('usuarios.index') }}">
+                                <span class="icon">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </span>
+                                <span class="title">Clientes</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('agendamentos.index') }}">
+                                <span class="icon">
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                </span>
+                                <span class="title">Agendamentos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('funcionarios.index') }}">
+                                <span class="icon">
+                                    <ion-icon name="people-circle-outline"></ion-icon>
+                                </span>
+                                <span class="title">Funcionários</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('servicos.index') }}">
+                                <span class="icon">
+                                    <ion-icon name="construct-outline"></ion-icon>
+                                </span>
+                                <span class="title">Serviços</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('feedbacks.index') }}">
+                                <span class="icon">
+                                    <ion-icon name="chatbubble-outline"></ion-icon>
+                                </span>
+                                <span class="title">Feedbacks</span>
+                            </a>
+                        </li>
+
+                        <hr>
+
+                        <li class="logout">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <span class="icon">
+                                        <ion-icon name="log-out-outline"></ion-icon>
+                                    </span>
+                                    <span class="title">Sair</span>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </header>
 
-    <button id="menuButton" class="text-gray-300 focus:outline-none mt-2">
-        <svg id="menuIcon" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-    </button>
 
-    <div id="overlay" class="overlay"></div>
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
 
-    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gray-800 p-4 transform -translate-x-full transition-transform duration-200 ease-in-out z-40">
-        <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
-        <nav class="space-y-4">
-            <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">...</a>
-            <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">...</a>
-            <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">...</a>
-            <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">...</a>
-        </nav>
-    </div>
-
-    <div class="ml-0 transition-margin duration-200 ease-in-out" id="mainContent">
-        <main class="p-6">
-            <div class="bg-gray-700 rounded p-4 mb-4 shadow-lg">
-                <h2 class="text-lg font-semibold mb-2">Visão Geral</h2>
-                <p class="text-gray-300">Aqui ficará alguma coisa</p>
+                <div class="user">
+                    <div class="user-info">
+                        <span class="username">{{ Auth::user()->name }}</span>
+                        <i class="fas fa-user-circle user-icon"></i>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Clientes
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ $total_clientes }}</div>
+                        <div class="cardName">Clientes</div>
                     </div>
-                    <p class="text-white mb-4">Total de Clientes: {{ $total_clientes }}</p>
-                    <a href="{{ route('usuarios.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista de Clientes</a>
+
+                    <div class="iconBx">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </div>
                 </div>
 
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Agendamentos
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ $total_agendamentos }}</div>
+                        <div class="cardName">Agendamentos</div>
                     </div>
-                    <p class="text-white mb-4">Número de Agendamentos: {{ $total_agendamentos }}</p>
-                    <a href="{{ route('agendamentos.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Agendamentos</a>
+
+                    <div class="iconBx">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                    </div>
                 </div>
 
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Funcionários
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ $total_funcionarios }}</div>
+                        <div class="cardName">Funcionários</div>
                     </div>
-                    <p class="text-white mb-4">Total de Funcionários: {{ $total_funcionarios }}</p>
-                    <a href="{{ route('funcionarios.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista de Funcionários</a>
+
+                    <div class="iconBx">
+                        <ion-icon name="people-circle-outline"></ion-icon>
+                    </div>
                 </div>
 
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Serviços
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ $total_servicos }}</div>
+                        <div class="cardName">Serviços</div>
                     </div>
-                    <p class=" text-white mb-4">Total de Serviços: {{ $total_servicos }} </p>
-                    <a href="{{ route('servicos.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista Serviços</a>
+
+                    <div class="iconBx">
+                        <ion-icon name="construct-outline"></ion-icon>
+                    </div>
                 </div>
 
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Feedbacks
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ $total_feedbacks }}</div>
+                        <div class="cardName">Feedback</div>
                     </div>
-                    <p class="text-white mb-4">Total de Feedbacks: {{ $total_feedbacks }}</p>
-                    <a href="{{ route('feedbacks.index') }}" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Lista Feedbacks</a>
-                </div>
 
-                <div class="col bg-gray-700 rounded-lg shadow-lg p-4">
-                    <div class="text-white text-lg font-semibold mb-2">
-                        Card 3
+                    <div class="iconBx">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
                     </div>
-                    <p class="text-2xl font-bold text-white mb-4">32</p>
-                    <a href="#" class="btn bg-gray-800 text-white px-4 py-2 rounded-lg">Ver Mais</a>
                 </div>
-
-
             </div>
 
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Agendamentos para Hoje</h2>
+                        <a href="{{ route('agendamentos.index') }}" class="btn">Ver todos</a>
+                    </div>
 
-        </main>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Cliente</td>
+                                <td>Serviço</td>
+                                <td>Funcionário</td>
+                                <td>Hora</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($agendamentos_hoje as $agendamento)
+                            <tr>
+                                <!-- Nome do Cliente -->
+                                <td>{{ $agendamento->cliente->name }}</td>
+
+                                <!-- Nome do Serviço -->
+                                <td>{{ $agendamento->servico->nome_servico }}</td>
+
+                                <!-- Nome do Funcionário -->
+                                <td>{{ $agendamento->funcionario->nome }}</td>
+
+                                <!-- Hora formatada -->
+                                <td>{{ $agendamento->formatted_horario_agendamento }}</td>
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+
+                <!-- ================= New Customers ================ -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Serviços Mais Agendados</h2>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Serviço</th>
+                                <th>Agendamentos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($servicosMaisAgendados as $servico)
+                            <tr>
+                                <td>{{ $servico->nome_servico }}</td>
+                                <td>{{ $servico->total_agendamentos }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-        const menuButton = document.getElementById('menuButton');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const mainContent = document.getElementById('mainContent');
-        const menuIcon = document.getElementById('menuIcon');
-        const closeIcon = document.getElementById('closeIcon');
+    <!-- =========== Scripts =========  -->
+    <script src="assets/js/main.js"></script>
 
-        menuButton.addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('active');
-
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-
-            if (!sidebar.classList.contains('-translate-x-full')) {
-                mainContent.classList.add('ml-64');
-                menuButton.classList.add('open');
-            } else {
-                mainContent.classList.remove('ml-64');
-                menuButton.classList.remove('open');
-            }
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.remove('active');
-            mainContent.classList.remove('ml-64');
-
-            menuIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
-            menuButton.classList.remove('open');
-        });
-    </script>
-
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0Hi60EuAT5viDO+Kd8zFDE6kWiwKrAtmO5NSKzqUjcJXsR27w" crossorigin="anonymous"></script>
 </body>
 
 </html>

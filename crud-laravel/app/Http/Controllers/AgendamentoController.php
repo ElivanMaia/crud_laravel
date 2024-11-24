@@ -4,93 +4,52 @@ namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
 use App\Models\Servico;
+use App\Http\Requests\StoreUpdateAgendamento;
 use Illuminate\Http\Request;
 
 class AgendamentoController extends Controller
 {
     public function index()
-    {
-        $total_agendamentos = Agendamento::count();
-
-        $agendamentos = Agendamento::with(['cliente', 'servico'])->get();
-
-        return view('agendamento', compact('agendamentos', 'total_agendamentos'));
-    }
-
-    public function show($id)
 {
-    $agendamento = Agendamento::with(['cliente', 'servico', 'funcionario'])->find($id);
+    $agendamentos = Agendamento::with(['cliente', 'servico', 'funcionario'])->get();
+    $total_agendamentos = Agendamento::count();
 
-    if (!$agendamento) {
-        return redirect()->route('agendamentos.index')->with('error', 'Agendamento não encontrado.');
-    }
-
-    return view('dashboard', compact('agendamento'));
+    return view('agendamento', compact('agendamentos', 'total_agendamentos'));
 }
 
 
-
-    public function create()
+    public function store(StoreUpdateAgendamento $request)
     {
-        $servicos = Servico::all();
-        return view('agendamentos.create', compact('servicos'));
-    }
-
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'telefone_cliente' => 'required|string|max:255',
-            'horario_agendamento' => 'required|date',
-            'observacoes' => 'nullable|string',
-            'referencias' => 'nullable|string',
-            'id_servico' => 'required|exists:servicos,id',
-            'id_funcionario' => 'required|exists:funcionarios,id',
-        ]);
-
-        $existe_agendamento = Agendamento::where('id_funcionario', $validated['id_funcionario'])
-            ->where('horario_agendamento', $validated['horario_agendamento'])
+        $existeAgendamento = Agendamento::where('id_user', auth()->id())
+            ->where('data_agendamento', '>=', now())
             ->exists();
 
-        if ($existe_agendamento) {
-            return back()->with('error', 'Este funcionário já tem um agendamento no horário escolhido. Por favor, escolha outro horário.');
+        if ($existeAgendamento) {
+            return back()->with('error', 'Você já tem um agendamento futuro e não pode agendar novamente.');
         }
 
         Agendamento::create([
-            'telefone_cliente' => $validated['telefone_cliente'],
-            'horario_agendamento' => $validated['horario_agendamento'],
-            'observacoes' => $validated['observacoes'],
-            'referencias' => $validated['referencias'],
-            'id_servico' => $validated['id_servico'],
+            'telefone_cliente' => $request->telefone_cliente,
+            'data_agendamento' => $request->data_agendamento,
+            'horario_agendamento' => $request->horario_agendamento,
+            'observacoes' => $request->observacoes,
+            'referencias' => $request->referencias,
+            'id_servico' => $request->id_servico,
             'id_user' => auth()->id(),
-            'id_funcionario' => $validated['id_funcionario'],
+            'id_funcionario' => $request->id_funcionario,
         ]);
 
         return back()->with('success', 'Agendamento realizado com sucesso!');
     }
 
 
-
-    public function edit($id)
+    public function update(StoreUpdateAgendamento $request, $id)
     {
         $agendamento = Agendamento::findOrFail($id);
 
-        $servicos = Servico::all();
-
-        return view('edit_agendamento', compact('agendamento', 'servicos'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'telefone_cliente' => 'required|string|max:255',
-            'horario_agendamento' => 'required|date',
-            'observacoes' => 'nullable|string',
-            'referencias' => 'nullable|string',
-        ]);
-
-        $agendamento = Agendamento::findOrFail($id);
         $agendamento->update([
             'telefone_cliente' => $request->telefone_cliente,
+            'data_agendamento' => $request->data_agendamento,
             'horario_agendamento' => $request->horario_agendamento,
             'observacoes' => $request->observacoes,
             'referencias' => $request->referencias,

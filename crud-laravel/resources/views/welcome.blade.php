@@ -123,43 +123,49 @@
 
     <section id="horarios" class="py-5 bg-dark">
         <div class="container pt-5">
-            <h2 class="section-title text-center mb-4 py-4 text-white">Datas e Horários de Agendamento</h2>
+            <h2 class="section-title text-center mb-5 text-white" style="font-size: 32px; font-weight: bold;">Datas e Horários de Agendamento</h2>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="card h-100 text-center">
-                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px;">
-                            <h4 class="card-title" style="font-size: 24px;"><i class="bi bi-calendar-day icon"></i> Dias de Agendamento</h4>
-                            <br>
-                            <ul class="list-unstyled styled-list">
-                                <li style="font-size: 20px;">Terça-feira</li>
-                                <li style="font-size: 20px;">Quarta-feira</li>
-                                <li style="font-size: 20px;">Quinta-feira</li>
-                                <li style="font-size: 20px;">Sexta-feira</li>
-                                <li style="font-size: 20px;">Sábado</li>
+                <!-- Cartão de Dias de Agendamento -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-light rounded-lg">
+                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
+                            <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
+                                <i class="bi bi-calendar-day" style="font-size: 28px; color: #0069d9;"></i> Dias de Agendamento
+                            </h4>
+                            <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                            <li>Segunda-feira</li>
+                                <li>Terça-feira</li>
+                                <li>Quarta-feira</li>
+                                <li>Quinta-feira</li>
+                                <li>Sexta-feira</li>
+                                <li>Sábado</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card h-100 text-center">
-                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px;">
-                            <h4 class="card-title" style="font-size: 24px;"><i class="bi bi-clock icon"></i> Horários de Agendamento</h4>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <ul class="list-unstyled styled-list">
-                                        <li style="font-size: 20px;">08:00</li>
-                                        <li style="font-size: 20px;">09:30</li>
-                                        <li style="font-size: 20px;">11:00</li>
-                                        <li style="font-size: 20px;">13:00</li>
+
+                <!-- Cartão de Horários de Agendamento -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-light rounded-lg">
+                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
+                            <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
+                                <i class="bi bi-clock" style="font-size: 28px; color: #0069d9;"></i> Horários de Agendamento
+                            </h4>
+                            <div class="row justify-content-center">
+                                <div class="col-md-5">
+                                    <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                                        <li>08:00</li>
+                                        <li>09:30</li>
+                                        <li>11:00</li>
+                                        <li>13:00</li>
                                     </ul>
                                 </div>
-                                <div class="col">
-                                    <ul class="list-unstyled styled-list">
-                                        <li style="font-size: 20px;">14:30</li>
-                                        <li style="font-size: 20px;">16:00</li>
-                                        <li style="font-size: 20px;">17:30</li>
-                                        <li style="font-size: 20px;">19:00</li>
+                                <div class="col-md-5">
+                                    <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                                        <li>14:30</li>
+                                        <li>16:00</li>
+                                        <li>17:30</li>
+                                        <li>19:00</li>
                                     </ul>
                                 </div>
                             </div>

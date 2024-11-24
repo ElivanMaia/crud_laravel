@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateFuncionario; // Importando o novo request
 use Illuminate\Support\Facades\Storage;
 
 class FuncionarioController extends Controller
@@ -19,15 +19,8 @@ class FuncionarioController extends Controller
         return view('create_funcionario');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateFuncionario $request) // Alterado para usar o StoreUpdateFuncionario
     {
-        $validated = $request->validate([
-            'nome' => 'required|string|max:255',
-            'caminho_barbearia' => 'required|string',
-            'frase_pessoal' => 'nullable|string',
-            'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:51200',
-        ]);
-
         $funcionario = new Funcionario();
         $funcionario->nome = $request->nome;
         $funcionario->caminho_barbearia = $request->caminho_barbearia;
@@ -84,15 +77,8 @@ class FuncionarioController extends Controller
         return view('edit_funcionario', compact('funcionario'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateFuncionario $request, $id) // Alterado para usar o StoreUpdateFuncionario
     {
-        $validated = $request->validate([
-            'nome' => 'required|string|max:255',
-            'caminho_barbearia' => 'required|string',
-            'frase_pessoal' => 'nullable|string',
-            'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:51200',
-        ]);
-
         $funcionario = Funcionario::findOrFail($id);
         $funcionario->nome = $request->nome;
         $funcionario->caminho_barbearia = $request->caminho_barbearia;

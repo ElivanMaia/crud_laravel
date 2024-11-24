@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feedback;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreFeedback;
 
 class FeedbackController extends Controller
 {
@@ -18,13 +18,8 @@ class FeedbackController extends Controller
         return view('feedbacks.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreFeedback $request)
     {
-        $request->validate([
-            'avaliacao' => 'required|integer|between:1,5',
-            'mensagem' => 'required|string',
-        ]);
-
         Feedback::create([
             'avaliacao' => $request->avaliacao,
             'mensagem' => $request->mensagem,
@@ -32,9 +27,7 @@ class FeedbackController extends Controller
         ]);
 
         return back()->with('success', 'Feedback enviado com sucesso!');
-
     }
-
 
     public function destroy($id)
     {

@@ -36,8 +36,13 @@
             </div>
 
             <div class="mb-4">
-                <label for="horario_agendamento" class="block text-lg">Data e Hora</label>
-                <input type="datetime-local" id="horario_agendamento" name="horario_agendamento" value="{{ old('horario_agendamento', $agendamento->horario_agendamento->format('Y-m-d\TH:i')) }}" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
+                <label for="data_agendamento" class="block text-lg">Data</label>
+                <input type="date" id="data_agendamento" name="data_agendamento" value="{{ old('data_agendamento', $agendamento->data_agendamento->format('Y-m-d')) }}" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="horario_agendamento" class="block text-lg">Hora</label>
+                <input type="time" id="horario_agendamento" name="horario_agendamento" value="{{ old('horario_agendamento', $agendamento->horario_agendamento->format('H:i')) }}" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
             </div>
 
             <div class="mb-4">

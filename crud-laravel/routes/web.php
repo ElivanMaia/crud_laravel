@@ -22,6 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('agendamentos/{id}/edit', [AgendamentoController::class, 'edit'])->name('agendamentos.edit');
     Route::put('agendamentos/{id}', [AgendamentoController::class, 'update'])->name('agendamentos.update');
     Route::delete('agendamentos/{id}', [AgendamentoController::class, 'destroy'])->name('agendamentos.destroy');
+    
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -60,5 +61,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 Route::middleware(['auth'])->get('/admin', [AdminController::class, 'index'])->name('admin');
+
 
 require __DIR__ . '/auth.php';

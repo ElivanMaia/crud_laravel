@@ -72,52 +72,52 @@
         }
 
         .bg-dark {
-        background-color: #f8f9fa !important;
-    }
+            background-color: #f8f9fa !important;
+        }
 
-    .section-title {
-        font-size: 32px;
-        color: #333;
-        font-weight: bold;
-        margin-bottom: 40px;
-    }
+        .section-title {
+            font-size: 32px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
 
-    .card {
-        border: 1px solid #ddd;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+        .card {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    .card-title {
-        font-size: 24px;
-        font-weight: 600;
-        color: #333;
-    }
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+        }
 
-    .bi {
-        color: #0069d9;
-    }
+        .bi {
+            color: #0069d9;
+        }
 
-    .list-unstyled li {
-        font-size: 18px;
-        color: #555;
-        padding: 5px 0;
-        transition: color 0.3s ease;
-    }
+        .list-unstyled li {
+            font-size: 18px;
+            color: #555;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
 
-    .list-unstyled li:hover {
-        color: #0069d9;
-        cursor: pointer;
-    }
+        .list-unstyled li:hover {
+            color: #0069d9;
+            cursor: pointer;
+        }
 
-    .card-body {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 300px;
-    }
+        .card-body {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 300px;
+        }
     </style>
 </head>
 
@@ -220,58 +220,59 @@
 
 
     <section id="horarios" class="py-5 bg-dark">
-    <div class="container pt-5">
-        <h2 class="section-title text-center mb-5 text-white" style="font-size: 32px; font-weight: bold;">Datas e Horários de Agendamento</h2>
-        <div class="row">
-            <!-- Cartão de Dias de Agendamento -->
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 border-light rounded-lg">
-                    <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
-                        <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
-                            <i class="bi bi-calendar-day" style="font-size: 28px; color: #0069d9;"></i> Dias de Agendamento
-                        </h4>
-                        <ul class="list-unstyled" style="font-size: 18px; color: #555;">
-                            <li>Terça-feira</li>
-                            <li>Quarta-feira</li>
-                            <li>Quinta-feira</li>
-                            <li>Sexta-feira</li>
-                            <li>Sábado</li>
-                        </ul>
+        <div class="container pt-5">
+            <h2 class="section-title text-center mb-5 text-white" style="font-size: 32px; font-weight: bold;">Datas e Horários de Agendamento</h2>
+            <div class="row">
+                <!-- Cartão de Dias de Agendamento -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-light rounded-lg">
+                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
+                            <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
+                                <i class="bi bi-calendar-day" style="font-size: 28px; color: #0069d9;"></i> Dias de Agendamento
+                            </h4>
+                            <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                                <li>Segunda-feira</li>
+                                <li>Terça-feira</li>
+                                <li>Quarta-feira</li>
+                                <li>Quinta-feira</li>
+                                <li>Sexta-feira</li>
+                                <li>Sábado</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Cartão de Horários de Agendamento -->
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 border-light rounded-lg">
-                    <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
-                        <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
-                            <i class="bi bi-clock" style="font-size: 28px; color: #0069d9;"></i> Horários de Agendamento
-                        </h4>
-                        <div class="row justify-content-center">
-                            <div class="col-md-5">
-                                <ul class="list-unstyled" style="font-size: 18px; color: #555;">
-                                    <li>08:00</li>
-                                    <li>09:30</li>
-                                    <li>11:00</li>
-                                    <li>13:00</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-5">
-                                <ul class="list-unstyled" style="font-size: 18px; color: #555;">
-                                    <li>14:30</li>
-                                    <li>16:00</li>
-                                    <li>17:30</li>
-                                    <li>19:00</li>
-                                </ul>
+                <!-- Cartão de Horários de Agendamento -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-light rounded-lg">
+                        <div class="card-body d-flex flex-column justify-content-center" style="height: 300px; text-align: center;">
+                            <h4 class="card-title text-dark mb-4" style="font-size: 24px; font-weight: 600;">
+                                <i class="bi bi-clock" style="font-size: 28px; color: #0069d9;"></i> Horários de Agendamento
+                            </h4>
+                            <div class="row justify-content-center">
+                                <div class="col-md-5">
+                                    <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                                        <li>08:00</li>
+                                        <li>09:30</li>
+                                        <li>11:00</li>
+                                        <li>13:00</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-5">
+                                    <ul class="list-unstyled" style="font-size: 18px; color: #555;">
+                                        <li>14:30</li>
+                                        <li>16:00</li>
+                                        <li>17:30</li>
+                                        <li>19:00</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
@@ -281,26 +282,32 @@
                 <div class="col-md-6 offset-md-3">
                     <h2 class="text-center text-white">Agendar Corte</h2>
 
+                    @if(session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
+
                     <form action="{{ route('agendamentos.store') }}" method="POST">
                         @csrf
                         <div class="form-group mb-3">
                             <label for="telefone_cliente" class="text-white">Telefone<span style="color: red">*</span></label>
                             <input type="tel" name="telefone_cliente" value="{{ old('telefone_cliente') }}"
                                 class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark"
-                                onkeypress="$(this).mask('(00) 0000-0000')"
-                                placeholder="(00) 0000-0000" required>
+                                onkeypress="$(this).mask('(00) 0000-0000')" placeholder="(00) 0000-0000" required>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="horario_agendamento" class="text-white">Data e Hora<span style="color: red">*</span></label>
-                            <input type="datetime-local"
-                                id="horario_agendamento"
-                                name="horario_agendamento"
-                                class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark"
-                                required>
-                            @error('horario_agendamento')
-                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
+                        <div class="mb-6">
+                            <label for="data_agendamento" class="text-white">Escolha a Data do Agendamento<span style="color: red">*</span></label>
+                            <input type="text" id="data_agendamento" name="data_agendamento"
+                                class="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Selecione a data" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="horario_agendamento" class="text-white">Escolha a Hora do Agendamento<span style="color: red">*</span></label>
+                            <div id="horarios_disponiveis" class="grid grid-cols-4 gap-4">
+                                <!-- Botões de horário serão adicionados aqui -->
+                            </div>
+                            <input type="hidden" id="horario_agendamento" name="horario_agendamento"> <!-- Alteração aqui -->
                         </div>
 
                         <div class="form-group mb-3">
@@ -308,8 +315,7 @@
                             <select name="id_servico" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" required>
                                 <option value="" disabled selected hidden>Selecione o serviço desejado</option>
                                 @foreach ($servicos as $servico)
-                                <option value="{{ $servico->id }}" {{
-                                old('id_servico') == $servico->id ? 'selected' : '' }}>
+                                <option value="{{ $servico->id }}" {{ old('id_servico')==$servico->id ? 'selected' : '' }}>
                                     {{ $servico->nome_servico }} - R$ {{ number_format($servico->preco, 2, ',', '.') }}
                                 </option>
                                 @endforeach
@@ -321,8 +327,7 @@
                             <select name="id_funcionario" class="form-control w-full p-2 rounded bg-white border border-gray-700 text-dark" required>
                                 <option value="" disabled selected hidden>Selecione o Funcionário</option>
                                 @foreach ($funcionarios as $funcionario)
-                                <option value="{{ $funcionario->id }}" {{
-                                old('id_funcionario') == $funcionario->id ? 'selected' : '' }}>
+                                <option value="{{ $funcionario->id }}" {{ old('id_funcionario')==$funcionario->id ? 'selected' : '' }}>
                                     {{ $funcionario->nome }}
                                 </option>
                                 @endforeach
@@ -353,38 +358,6 @@
             </div>
         </div>
     </section>
-
-    <div class="modal fade" id="agendamentoModal" tabindex="-1" aria-labelledby="agendamentoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content bg-dark text-white">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="agendamentoModalLabel">Detalhes do Agendamento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                @if(isset($agendamento))
-    <p><strong>Detalhes do Agendamento:</strong> {{ $agendamento->id ?? 'Não encontrado' }}</p>
-    <p><strong>Cliente:</strong> {{ $agendamento->cliente->nome ?? 'Não informado' }}</p>
-    <p><strong>Telefone:</strong> {{ $agendamento->cliente->telefone ?? 'Não informado' }}</p>
-    <p><strong>Data e Hora:</strong> {{ $agendamento->horario_agendamento->format('d/m/Y H:i') ?? 'Não informado' }}</p>
-    <p><strong>Serviço:</strong> {{ $agendamento->servico->nome_servico ?? 'Não informado' }} - R$ {{ number_format($agendamento->servico->preco ?? 0, 2, ',', '.') }}</p>
-    <p><strong>Funcionário:</strong> {{ $agendamento->funcionario->nome ?? 'Não informado' }}</p>
-    <p><strong>Observações:</strong> {{ $agendamento->observacoes ?? 'Não informado' }}</p>
-    <p><strong>Referências:</strong> {{ $agendamento->referencias ?? 'Não informado' }}</p>
-@else
-    <p>Agendamento não encontrado.</p>
-@endif
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Confirmar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
     <section id="feedbacks" class="py-5 bg-dark">
@@ -432,11 +405,108 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#telefone').mask('(00) 0000-0000');
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    flatpickr("#data_agendamento", {
+        minDate: "today",  // A data mínima para o agendamento é hoje
+        disable: [
+            function(date) {
+                return (date.getDay() === 0);  // Desabilitar domingos
+            }
+        ],
+        locale: 'pt',  // Definir a localidade como português
+        dateFormat: "Y-m-d",  // Formato da data no campo
+        altInput: true,  // Usar input alternativo para exibir a data
+        altFormat: "d/m/Y",  // Formato alternativo para exibição
+        placeholder: "Selecione uma data",  // Placeholder do campo de data
+        onChange: function(selectedDates, dateStr, instance) {
+            carregarHorarios(); // Chama a função para carregar os horários ao selecionar uma data
+        }
+    });
+});
+
+// Horários de funcionamento por dia da semana
+const horariosFuncionamento = {
+    "segunda": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+    "terca": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+    "quarta": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+    "quinta": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+    "sexta": ["08:00", "09:30", "11:00", "13:00", "14:30"],
+    "sabado": [],
+    "domingo": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
+};
+
+function carregarHorarios() {
+    const dataSelecionada = document.getElementById("data_agendamento").value;
+    const horariosDiv = document.getElementById("horarios_disponiveis");
+    const horarioSelecionadoInput = document.getElementById("horario_agendamento");
+
+    horariosDiv.innerHTML = '';  // Limpa a lista de horários
+
+    if (dataSelecionada) {
+        console.log("Data selecionada: " + dataSelecionada);
+
+        // Aqui obtemos o dia da semana (0=Domingo, 1=Segunda, ...)
+        const diaSemana = new Date(dataSelecionada).getDay();
+        console.log("Dia da semana (0=Domingo, 1=Segunda, ...): " + diaSemana);
+
+        // Mapear os dias da semana diretamente
+        const diasDaSemana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
+        const diaDaSemanaSelecionado = diasDaSemana[diaSemana];
+        console.log("Dia da semana selecionado: " + diaDaSemanaSelecionado);
+
+        // Obtemos os horários para o dia selecionado
+        const horarios = horariosFuncionamento[diaDaSemanaSelecionado];
+        console.log("Horários disponíveis para o dia " + diaDaSemanaSelecionado + ": ", horarios);
+
+        if (horarios && horarios.length > 0) {
+            // Criar os botões de horário
+            horarios.forEach(hora => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "hora-btn bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-6 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300";
+                button.innerText = hora;
+
+                horariosDiv.appendChild(button);
+
+                button.addEventListener("click", function() {
+                    horarioSelecionadoInput.value = hora;
+                    console.log('Horário selecionado:', hora);
+
+                    // Atualiza a aparência dos botões
+                    document.querySelectorAll(".hora-btn").forEach(btn => {
+                        btn.classList.remove("bg-blue-600", "border-4", "border-blue-800", "shadow-2xl");
+                        btn.classList.add("bg-gradient-to-r", "from-blue-500", "to-blue-700");
+                    });
+                    button.classList.add("bg-blue-600", "border-4", "border-blue-800", "shadow-2xl");
+                });
+            });
+        }
+    } else {
+        console.log("Nenhuma data foi selecionada.");
+    }
+}
+
+// Chama a função ao mudar a data
+document.getElementById("data_agendamento").addEventListener("change", carregarHorarios);
+
+
+
+    </script>
+
+
 
 
     <script>
@@ -472,87 +542,6 @@
         }
     </script>
 
-    <script>
-        var agendamentoModal = document.getElementById('agendamentoModal');
-        agendamentoModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget;
-            var cliente = button.getAttribute('data-cliente');
-            var telefone = button.getAttribute('data-telefone');
-            var data = button.getAttribute('data-data');
-            var servico = button.getAttribute('data-servico');
-            var funcionario = button.getAttribute('data-funcionario');
-            var observacoes = button.getAttribute('data-observacoes');
-            var referencias = button.getAttribute('data-referencias');
-
-            var modalTitle = agendamentoModal.querySelector('.modal-title');
-            var modalBody = agendamentoModal.querySelector('.modal-body');
-
-            modalTitle.textContent = 'Detalhes do Agendamento - ' + cliente;
-            modalBody.innerHTML = `
-            <p><strong>Cliente:</strong> ${cliente}</p>
-            <p><strong>Telefone:</strong> ${telefone}</p>
-            <p><strong>Data e Hora:</strong> ${data}</p>
-            <p><strong>Serviço:</strong> ${servico}</p>
-            <p><strong>Funcionário:</strong> ${funcionario}</p>
-            <p><strong>Observações:</strong> ${observacoes}</p>
-            <p><strong>Referências:</strong> ${referencias}</p>
-        `;
-        });
-    </script>
-
-
-
-    <script>
-        const horariosPermitidos = {
-            "2": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
-            "3": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
-            "4": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
-            "5": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"],
-            "6": ["08:00", "09:30", "11:00", "13:00", "14:30", "16:00", "17:30", "19:00"]
-        };
-
-        function formatDate(date) {
-            return date.toISOString().slice(0, 16);
-        }
-
-        document.getElementById('horario_agendamento').addEventListener('input', function(e) {
-            const input = e.target;
-            const selectedDate = new Date(input.value);
-
-            const dayOfWeek = selectedDate.getDay();
-
-            if (dayOfWeek === 0 || dayOfWeek === 1) {
-                alert('Somente dias de terça a sábado são permitidos!');
-                input.setCustomValidity('Escolha um dia entre terça-feira e sábado.');
-                input.value = '';
-                return;
-            }
-
-            const selectedHour = selectedDate.getHours();
-            const selectedMinute = selectedDate.getMinutes();
-            const selectedTime = `${String(selectedHour).padStart(2, '0')}:${String(selectedMinute).padStart(2, '0')}`;
-
-            const validHours = horariosPermitidos[dayOfWeek];
-
-            if (!validHours.includes(selectedTime)) {
-                const firstValidTime = validHours[0];
-
-                const [hour, minute] = firstValidTime.split(":");
-                selectedDate.setHours(hour, minute);
-
-                input.value = formatDate(selectedDate);
-
-                alert(`Horário inválido! Ajustado automaticamente para o primeiro horário disponível: ${firstValidTime}`);
-            }
-        });
-
-        document.getElementById('horario_agendamento').setAttribute('min', formatDate(new Date()));
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 
 </body>
 

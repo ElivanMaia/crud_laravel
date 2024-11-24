@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Agendamento extends Model
 {
@@ -14,32 +15,45 @@ class Agendamento extends Model
     protected $fillable = [
         'id_user',
         'telefone_cliente',
-        'horario_agendamento',
+        'data_agendamento',  // Data (sem hora)
+        'horario_agendamento', // Hora (sem data)
         'observacoes',
         'referencias',
         'id_servico',
         'id_funcionario'
     ];
 
-    protected $dates = ['horario_agendamento'];
+    // Trate 'data_agendamento' como 'date' (sem hora)
+    protected $dates = [
+        'data_agendamento',
+    ];
 
+    // 'horario_agendamento' tratado como string, pois é apenas um horário
     protected $casts = [
-        'horario_agendamento' => 'datetime',
+        'data_agendamento' => 'date', // Somente a data
+        'horario_agendamento' => 'string', // Somente a hora
     ];
 
     public function cliente()
-{
-    return $this->belongsTo(User::class, 'id_user');
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function servico()
+    {
+        return $this->belongsTo(Servico::class, 'id_servico');
+    }
+
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class, 'id_funcionario');
+    }
+
+    // Opcionalmente, um método para formatar o horário
+    public function getFormattedHorarioAgendamentoAttribute()
+    {
+        // Verifique se o campo 'horario_agendamento' não está vazio antes de formatar
+        return Carbon::parse($this->horario_agendamento)->format('H:i');
+    }
 }
 
-public function servico()
-{
-    return $this->belongsTo(Servico::class, 'id_servico');
-}
-
-public function funcionario()
-{
-    return $this->belongsTo(Funcionario::class, 'id_funcionario');
-}
-
-}

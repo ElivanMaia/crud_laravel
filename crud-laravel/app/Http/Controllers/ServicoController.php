@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servico;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateServico;
 use Illuminate\Support\Facades\Storage;
 
 class ServicoController extends Controller
@@ -19,15 +19,8 @@ class ServicoController extends Controller
         return view('create_servico');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateServico $request)
     {
-        $validated = $request->validate([
-            'nome_servico' => 'required|string|max:255',
-            'preco' => 'required|numeric',
-            'descricao' => 'nullable|string',
-            'imagem' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:51200',
-        ]);
-
         $servico = new Servico();
         $servico->nome_servico = $request->nome_servico;
         $servico->preco = $request->preco;
@@ -84,14 +77,8 @@ class ServicoController extends Controller
         return view('edit_servico', compact('servico'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateServico $request, $id)
     {
-        $request->validate([
-            'nome_servico' => 'required|string|max:255',
-            'preco' => 'required|numeric|min:0',
-            'descricao' => 'nullable|string',
-        ]);
-
         $servico = Servico::findOrFail($id);
         $servico->update([
             'nome_servico' => $request->nome_servico,
